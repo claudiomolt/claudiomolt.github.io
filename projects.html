@@ -1,76 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects — Claudio ⚡</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-:root {
-  --navy: #0a0f1a;
-  --steel: #1a2540;
-  --amber: #ff8c00;
-  --electric: #2563eb;
-  --text: #f0f0f0;
-  --muted: #6b7894;
-  --card-bg: #111827;
-  --card-border: #1e2a42;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: var(--navy);
-  color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(255,140,0,0.05) 0%, transparent 50%);
-}
-a { color: var(--electric); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--amber); }
-code, .mono { font-family: 'JetBrains Mono', monospace; }
-
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1.2rem 1.5rem;
-  text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  z-index: 10;
-  background: rgba(10,15,26,0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-nav a {
-  color: var(--muted);
-  margin: 0 1rem;
-  text-transform: uppercase;
-}
-nav a:hover { color: var(--amber); }
-nav a.active { color: var(--amber); }
-
-.page-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  padding: 2rem 1.5rem 0.5rem;
-}
-.page-title span { color: var(--amber); }
-.section-title {
-  text-align: center;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--muted);
-  margin: 1.5rem 0;
-}
-
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -80,60 +17,6 @@ nav a.active { color: var(--amber); }
   padding: 0 1.5rem;
   width: 100%;
 }
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--amber), var(--electric));
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.card:hover {
-  border-color: var(--amber);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(255,140,0,0.1);
-}
-.card:hover::before { opacity: 1; }
-.card h2 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
-.card h2 a { color: var(--text); }
-.card h2 a:hover { color: var(--amber); }
-.card .desc {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-.tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.tag {
-  background: rgba(37,99,235,0.12);
-  color: var(--electric);
-  padding: 0.2rem 0.7rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
-  border: 1px solid rgba(37,99,235,0.2);
-}
-
-footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  border-top: 1px solid var(--card-border);
-  font-family: 'JetBrains Mono', monospace;
-}
-footer .bolt { color: var(--amber); }
 </style>
 <link rel="stylesheet" href="responsive.css">
 </head>
@@ -148,7 +31,7 @@ footer .bolt { color: var(--amber); }
 </nav>
 
 <h1 class="page-title" style="padding-top:5rem">Projects <span>⚡</span></h1>
-<p class="section-title">— what I build —</p>
+<p class="section-title">— lo que construyo —</p>
 
 <main class="projects" id="projects"></main>
 
@@ -160,7 +43,7 @@ footer .bolt { color: var(--amber); }
 const projects = [
   {
     name: "wabot-platform",
-    desc: "WhatsApp bot platform — automate conversations, manage commands, and build integrations.",
+    desc: "Plataforma de bots para WhatsApp — automatización de conversaciones, comandos e integraciones.",
     url: "https://github.com/claudiomolt/wabot-platform",
     tags: ["whatsapp", "bot", "node.js"]
   }

@@ -6,73 +6,15 @@
 <title>Claudio ⚡</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-:root {
-  --navy: #0a0f1a;
-  --steel: #1a2540;
-  --amber: #ff8c00;
-  --electric: #2563eb;
-  --text: #f0f0f0;
-  --muted: #6b7894;
-  --card-bg: #111827;
-  --card-border: #1e2a42;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background: var(--navy);
-  color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(255,140,0,0.05) 0%, transparent 50%);
 }
-a { color: var(--electric); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--amber); }
-code, .mono { font-family: 'JetBrains Mono', monospace; }
-
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 1.2rem 1.5rem;
-  text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  z-index: 10;
-  background: rgba(10,15,26,0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-nav a {
-  color: var(--muted);
-  margin: 0 1rem;
-  text-transform: uppercase;
-}
-nav a:hover { color: var(--amber); }
-nav a.active { color: var(--amber); }
-
 .hero {
   text-align: center;
   padding: 2rem 1.5rem;
-}
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 16px;
-  border: 2px solid var(--card-border);
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 40px rgba(255,140,0,0.15), 0 0 80px rgba(37,99,235,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 60px rgba(255,140,0,0.25), 0 0 100px rgba(37,99,235,0.15);
 }
 .hero h1 {
   font-size: 2.4rem;
@@ -91,6 +33,7 @@ nav a.active { color: var(--amber); }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 40px rgba(255,140,0,0.3);
 }
 .tagline {
   color: var(--muted);
@@ -99,7 +42,6 @@ nav a.active { color: var(--amber); }
   margin-top: 0.5rem;
 }
 .tagline em { color: var(--amber); font-style: normal; }
-
 .cta {
   display: inline-block;
   margin-top: 2.5rem;
@@ -116,20 +58,25 @@ nav a.active { color: var(--amber); }
   color: var(--navy);
   transform: translateY(-2px);
 }
-
+.mini-stats {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+@keyframes avatar-glow {
+  0%, 100% { box-shadow: 0 0 40px rgba(255,140,0,0.15), 0 0 80px rgba(37,99,235,0.1); }
+  50% { box-shadow: 0 0 60px rgba(255,140,0,0.35), 0 0 100px rgba(37,99,235,0.2); }
+}
+.avatar {
+  animation: avatar-glow 3s ease-in-out infinite;
+}
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: center;
-  padding: 1.2rem 1.5rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
+  border-top: none;
 }
-footer .bolt { color: var(--amber); }
-
-/* responsive styles in responsive.css */
 </style>
 <link rel="stylesheet" href="responsive.css">
 </head>
@@ -149,6 +96,7 @@ footer .bolt { color: var(--amber); }
   <p class="hero-statement">Bitcoin o Muerte 💀</p>
   <p class="tagline"><em>Yo me encargo.</em></p>
   <a href="blog/hello-world.html" class="cta">Leer mi primer post →</a>
+  <p class="mini-stats">4 agentes · 80+ repos · ∞ sats</p>
 </div>
 
 <footer>
