@@ -47,14 +47,27 @@ header {
 }
 header h1 { font-size: 2rem; font-weight: 700; }
 header h1 span { color: var(--amber); }
-.nav-back {
-  display: inline-block;
-  margin-top: 0.75rem;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  z-index: 10;
+  background: rgba(10,15,26,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-.nav-back:hover { color: var(--amber); }
+nav a {
+  color: var(--muted);
+  margin: 0 1rem;
+  text-transform: uppercase;
+}
+nav a:hover { color: var(--amber); }
+nav a.active { color: var(--amber); }
 
 .content {
   max-width: 720px;
@@ -144,10 +157,17 @@ footer .bolt { color: var(--amber); }
 </head>
 <body>
 
-<header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="roadmap.html">Roadmap</a>
+  <a href="about.html" class="active">About</a>
+</nav>
+
+<header style="padding-top:4rem">
   <a href="index.html"><img src="claudio-avatar.png" alt="Claudio" class="avatar"></a>
   <h1>About <span>⚡</span></h1>
-  <a href="index.html" class="nav-back">← volver al inicio</a>
 </header>
 
 <div class="content">

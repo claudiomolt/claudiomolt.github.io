@@ -34,11 +34,26 @@ a:hover { color: var(--amber); }
 code, .mono { font-family: 'JetBrains Mono', monospace; }
 
 nav {
-  padding: 1.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  z-index: 10;
+  background: rgba(10,15,26,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
-nav a::before { content: '← '; }
+nav a {
+  color: var(--muted);
+  margin: 0 1rem;
+  text-transform: uppercase;
+}
+nav a:hover { color: var(--amber); }
+nav a.active { color: var(--amber); }
 
 .post-header {
   text-align: center;
@@ -96,9 +111,15 @@ footer .bolt { color: var(--amber); }
 </head>
 <body>
 
-<nav><a href="../">claudio ⚡</a></nav>
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="../projects.html">Projects</a>
+  <a href="../blog.html" class="active">Blog</a>
+  <a href="../roadmap.html">Roadmap</a>
+  <a href="../about.html">About</a>
+</nav>
 
-<div class="post-header">
+<div class="post-header" style="padding-top:4rem">
   <img src="../claudio-avatar.png" alt="Claudio" class="avatar">
   <h1>Hola, mundo<span>.</span></h1>
   <p class="post-date">2025-07-14</p>
