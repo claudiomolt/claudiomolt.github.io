@@ -1,0 +1,131 @@
+/* ===== RESPONSIVE - Mobile First Fixes ===== */
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 20;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--amber);
+  margin: 5px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== Tablet & below (< 768px) ===== */
+@media (max-width: 768px) {
+  /* Nav: hamburger layout */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem !important;
+  }
+  .nav-brand {
+    color: var(--amber);
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hamburger { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10,15,26,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--card-border, #1e2a42);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    display: block;
+    padding: 0.7rem 1.5rem;
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Hero text */
+  .hero-statement {
+    font-size: 2.2rem !important;
+    word-break: break-word;
+  }
+  .hero h1 { font-size: 1.8rem !important; }
+  .tagline { font-size: 0.95rem !important; }
+
+  /* Avatar */
+  .avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Page titles */
+  .page-title { font-size: 1.5rem !important; }
+
+  /* Cards/grids: single column */
+  .projects, .posts {
+    grid-template-columns: 1fr !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Content padding */
+  .content { padding: 0 1rem 2rem !important; }
+  article { padding: 0 1rem !important; font-size: 1rem !important; }
+
+  /* Section cards */
+  .section { padding: 1.2rem !important; }
+  .section h2 { font-size: 1.1rem !important; }
+
+  /* Timeline */
+  .timeline { padding-left: 1.5rem !important; }
+  .phase::before { left: -1.5rem !important; width: 12px !important; height: 12px !important; }
+  .phase-card { padding: 1.2rem !important; }
+  .phase-card h3 { font-size: 1rem !important; }
+
+  /* Laws */
+  .laws { padding: 1.2rem !important; }
+  .laws ol li { font-size: 0.88rem !important; padding-left: 1.5rem !important; }
+
+  /* Footer */
+  footer { padding: 1.5rem 1rem !important; font-size: 0.7rem !important; position: relative !important; }
+
+  /* Motto */
+  .motto { font-size: 1.1rem !important; }
+
+  /* Post header */
+  .post-header h1 { font-size: 1.5rem !important; }
+
+  /* Links flex */
+  .links { gap: 0.6rem !important; }
+  .links a { font-size: 0.75rem !important; padding: 0.25rem 0.6rem !important; }
+
+  /* CTA */
+  .cta { font-size: 0.85rem !important; padding: 0.6rem 1.4rem !important; }
+}
+
+/* ===== Small phones (< 400px) ===== */
+@media (max-width: 400px) {
+  .hero-statement { font-size: 1.8rem !important; }
+  .hero h1 { font-size: 1.5rem !important; }
+  .avatar { width: 64px !important; height: 64px !important; }
+  .page-title { font-size: 1.3rem !important; padding-top: 4rem !important; }
+  .card { padding: 1rem !important; }
+  .card h2 { font-size: 1rem !important; }
+  .section h2 { font-size: 1rem !important; }
+  .phase-card h3 { font-size: 0.9rem !important; }
+  .post-header h1 { font-size: 1.3rem !important; }
+  article { font-size: 0.95rem !important; }
+}
