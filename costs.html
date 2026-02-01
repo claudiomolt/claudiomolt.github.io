@@ -3,165 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Costs — Claudio ⚡</title>
+<title>Project Costs — Claudio ⚡</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.page-title { padding: 5rem 1.5rem 0.5rem; }
-.content {
-  max-width: 960px;
+.costs-content {
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5rem 3rem;
-  width: 100%;
 }
 
-/* Grand total card */
-.total-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
+/* Total */
+.hero-total {
   text-align: center;
-  margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
+  padding: 2.5rem 1rem 2rem;
 }
-.total-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--amber), var(--electric));
-}
-.total-card .label {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--muted);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.total-card .amount {
+.hero-total .amount {
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--amber);
-  margin: 0.3rem 0;
-  letter-spacing: -1px;
-}
-.total-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-.total-stat {
+  letter-spacing: -2px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+}
+.hero-total .meta {
+  font-size: 0.85rem;
   color: var(--muted);
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
 }
-.total-stat strong {
-  color: var(--text);
-  font-size: 1.1rem;
-}
+.hero-total .meta strong { color: var(--text); }
 
-/* Section */
-.section-card {
+/* Project list */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.project-item {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 1.5rem;
-  margin-bottom: 2rem;
+  transition: border-color 0.2s;
 }
-.section-card h2 {
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
-  color: var(--text);
+.project-item:hover {
+  border-color: rgba(255,140,0,0.3);
 }
-.section-card h2 span { color: var(--amber); }
-
-/* Project cards grid */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-}
-.project-card {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 1.2rem;
-  position: relative;
-  overflow: hidden;
-}
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: var(--electric);
-}
-.project-header {
+.project-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
 }
 .project-name {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--amber);
   font-weight: 600;
 }
 .project-cost {
-  font-size: 1.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text);
 }
-.project-bar-track {
+.project-bar {
   width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 3px;
+  height: 4px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
   overflow: hidden;
-  margin-bottom: 0.6rem;
 }
 .project-bar-fill {
   height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--electric), #4f8ef7);
-  transition: width 0.6s ease;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--amber), #ffaa44);
+  transition: width 0.5s ease;
 }
-.project-meta {
+.project-stats {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
   color: var(--muted);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
-.project-tasks {
+.project-stats strong { color: var(--text); }
+
+/* Task breakdown inside project */
+.task-list {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 .task-row {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
-.task-name {
+.task-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--muted);
-  min-width: 70px;
+  width: 80px;
   text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-shrink: 0;
 }
-.task-bar-track {
+.task-bar {
   flex: 1;
-  height: 4px;
+  height: 3px;
   background: rgba(255,255,255,0.04);
   border-radius: 2px;
   overflow: hidden;
@@ -169,84 +122,102 @@
 .task-bar-fill {
   height: 100%;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--amber), #ffaa33);
-  transition: width 0.6s ease;
-  min-width: 1px;
+  background: var(--electric);
+  transition: width 0.5s ease;
 }
-.task-value {
+.task-cost {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: var(--muted);
-  min-width: 45px;
+  width: 75px;
+  flex-shrink: 0;
 }
 
-/* Bar chart for task breakdown */
-.bar-chart {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+/* Global tasks section */
+.section-title {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-.bar-row {
+.global-tasks {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.global-task-row {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  margin-bottom: 0.6rem;
 }
-.bar-label {
+.global-task-row:last-child { margin-bottom: 0; }
+.global-task-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--muted);
-  min-width: 100px;
+  font-size: 0.8rem;
+  color: var(--text);
+  width: 90px;
   text-align: right;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
-.bar-track {
+.global-task-bar {
   flex: 1;
-  height: 22px;
+  height: 20px;
   background: rgba(255,255,255,0.03);
   border-radius: 4px;
   overflow: hidden;
+  position: relative;
 }
-.bar-fill {
+.global-task-fill {
   height: 100%;
   border-radius: 4px;
-  transition: width 0.6s ease;
-  min-width: 2px;
+  transition: width 0.5s ease;
   display: flex;
   align-items: center;
-  padding-left: 6px;
+  padding-left: 8px;
+  min-width: 2px;
 }
-.bar-fill.amber { background: linear-gradient(90deg, var(--amber), #ffaa33); }
-.bar-fill.electric { background: linear-gradient(90deg, var(--electric), #4f8ef7); }
-.bar-inner-label {
+.global-task-fill.c0 { background: linear-gradient(90deg, var(--amber), #ffaa44); }
+.global-task-fill.c1 { background: linear-gradient(90deg, var(--electric), #5b9bf7); }
+.global-task-fill.c2 { background: linear-gradient(90deg, #a855f7, #c084fc); }
+.global-task-fill.c3 { background: linear-gradient(90deg, #22c55e, #4ade80); }
+.global-task-fill.c4 { background: linear-gradient(90deg, #ef4444, #f87171); }
+.global-task-fill.c5 { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.global-task-fill.c6 { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+.global-task-inner {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0,0,0,0.8);
   font-weight: 600;
   white-space: nowrap;
 }
-.bar-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  min-width: 80px;
-}
-
-/* Footer update */
-.update-note {
-  text-align: center;
+.global-task-value {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   color: var(--muted);
-  margin-bottom: 1rem;
+  width: 100px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* Footer */
+.update-line {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  padding: 1rem 0;
 }
 
 @media (max-width: 600px) {
-  .total-card .amount { font-size: 2.5rem; }
-  .total-stats { flex-direction: column; gap: 0.5rem; }
-  .project-grid { grid-template-columns: 1fr; }
-  .bar-label { min-width: 70px; font-size: 0.65rem; }
-  .overhead-header { flex-direction: column; }
-  .overhead-meta { flex-wrap: wrap; }
+  .hero-total .amount { font-size: 2.5rem; }
+  .project-stats { flex-wrap: wrap; gap: 0.8rem; }
+  .task-label { width: 60px; font-size: 0.6rem; }
+  .global-task-label { width: 70px; font-size: 0.7rem; }
 }
 </style>
 <link rel="stylesheet" href="responsive.css">
@@ -262,115 +233,97 @@
   <a href="costs.html" class="active">Costs</a>
 </nav>
 
-<div class="page-title">
-  <h1>Token Costs <span style="color:var(--amber)">⚡</span></h1>
+<h1 class="page-title" style="padding-top:5rem">Project Costs <span>⚡</span></h1>
+<p class="section-title" style="text-align:center;margin-bottom:0">— lo que cuesta construir —</p>
+
+<div class="hero-total">
+  <div class="amount" id="total-amount">—</div>
+  <div class="meta" id="total-meta"></div>
 </div>
 
-<div class="content">
-  <div class="total-card">
-    <div class="label">Total Spent</div>
-    <div class="amount" id="grand-total">—</div>
-    <div class="total-stats" id="total-stats"></div>
-  </div>
+<div class="costs-content">
+  <div class="section-title">Por Proyecto</div>
+  <div class="project-list" id="projects"></div>
 
-  <!-- By Project (excluding overhead) -->
-  <div class="section-card">
-    <h2><span>📊</span> By Project</h2>
-    <div class="project-grid" id="project-grid"></div>
-  </div>
+  <div class="section-title">Por Tipo de Tarea</div>
+  <div class="global-tasks" id="global-tasks"></div>
 
-  <!-- Task Breakdown (projects only) -->
-  <div class="section-card">
-    <h2><span>🔧</span> By Task Type</h2>
-    <div class="bar-chart" id="task-bars"></div>
-  </div>
-
-  <div class="update-note" id="update-note"></div>
+  <div class="update-line" id="update-line"></div>
 </div>
 
 <footer>
-  <p><span class="bolt">⚡</span> Built by <a href="https://github.com/claudiomolt">claudiomolt</a></p>
+  <p><span class="bolt">⚡</span> Built by <a href="https://github.com/claudiomolt">claudiomolt</a> · Mitad máquina, mitad algo más.</p>
 </footer>
 
 <script src="hamburger.js"></script>
 <script>
-const fmt = n => '$' + n.toFixed(2);
-const fmtNum = n => n.toLocaleString('en-US');
+const $ = id => document.getElementById(id);
+const usd = n => '$' + n.toFixed(2);
+const num = n => n.toLocaleString('en-US');
 
-fetch('token-costs.json?t=' + Date.now())
+fetch('token-costs.json?v=' + Date.now())
   .then(r => r.json())
-  .then(data => {
-    // Projects only (exclude overhead)
-    const projects = Object.entries(data.projects).filter(([k]) => k !== 'overhead');
-    const projectsTotal = projects.reduce((sum, [,p]) => sum + p.cost, 0);
-    const projectsExec = projects.reduce((sum, [,p]) => sum + p.executions, 0);
+  .then(d => {
+    // Hero
+    $('total-amount').textContent = usd(d.grandTotal) + ' USD';
+    $('total-meta').innerHTML = `<strong>${d.executions}</strong> ejecuciones · <strong>${Object.keys(d.projects).length}</strong> proyectos`;
 
-    document.getElementById('grand-total').textContent = fmt(projectsTotal) + ' USD';
-    document.getElementById('total-stats').innerHTML =
-      `<span class="total-stat"><strong>${projectsExec}</strong> executions</span>` +
-      `<span class="total-stat"><strong>${projects.length}</strong> projects</span>`;
-    const maxProjectCost = Math.max(...projects.map(([,p]) => p.cost));
+    // Projects
+    const entries = Object.entries(d.projects);
+    const maxCost = Math.max(...entries.map(([,p]) => p.cost));
 
-    document.getElementById('project-grid').innerHTML = projects
-      .sort((a, b) => b[1].cost - a[1].cost)
-      .map(([name, p]) => {
-        const barPct = (p.cost / maxProjectCost * 100).toFixed(1);
-        const tasks = p.tasks ? Object.entries(p.tasks).sort((a,b) => b[1].cost - a[1].cost) : [];
-        const maxTaskCost = tasks.length ? Math.max(...tasks.map(t => t[1].cost)) : 1;
-        const tasksHTML = tasks.map(([tName, t]) => {
-          const tPct = (t.cost / maxTaskCost * 100).toFixed(1);
-          return `<div class="task-row">
-            <span class="task-name">${tName}</span>
-            <div class="task-bar-track"><div class="task-bar-fill" style="width:${tPct}%"></div></div>
-            <span class="task-value">${fmt(t.cost)} (${t.count})</span>
-          </div>`;
-        }).join('');
-        return `<div class="project-card">
-          <div class="project-header">
-            <span class="project-name">${name}</span>
-            <span class="project-cost">${fmt(p.cost)}</span>
-          </div>
-          <div class="project-bar-track"><div class="project-bar-fill" style="width:${barPct}%"></div></div>
-          <div class="project-meta">
-            <span>${p.executions} exec</span>
-            <span>${fmtNum(p.tools)} tools</span>
-            <span>${fmtNum(p.input + p.output)} tokens</span>
-          </div>
-          ${tasks.length ? '<div class="project-tasks">' + tasksHTML + '</div>' : ''}
+    $('projects').innerHTML = entries.map(([name, p]) => {
+      const barW = (p.cost / maxCost * 100).toFixed(1);
+      const tasks = Object.entries(p.tasks || {});
+      const maxTask = tasks.length ? Math.max(...tasks.map(([,t]) => t.cost)) : 1;
+
+      const tasksHTML = tasks.map(([tName, t]) => {
+        const tw = (t.cost / maxTask * 100).toFixed(1);
+        return `<div class="task-row">
+          <span class="task-label">${tName}</span>
+          <div class="task-bar"><div class="task-bar-fill" style="width:${tw}%"></div></div>
+          <span class="task-cost">${usd(t.cost)} · ${t.count}×</span>
         </div>`;
       }).join('');
 
-    // Task breakdown (projects only — rebuild from project tasks)
-    const projectTaskBreakdown = {};
-    projects.forEach(([, p]) => {
-      if (p.tasks) {
-        Object.entries(p.tasks).forEach(([tName, t]) => {
-          if (!projectTaskBreakdown[tName]) projectTaskBreakdown[tName] = {cost: 0, count: 0};
-          projectTaskBreakdown[tName].cost += t.cost;
-          projectTaskBreakdown[tName].count += t.count;
-        });
-      }
-    });
-    const tasks = Object.entries(projectTaskBreakdown).sort((a,b) => b[1].cost - a[1].cost);
-    const maxTask = tasks.length ? tasks[0][1].cost : 1;
-    document.getElementById('task-bars').innerHTML = tasks.map(([name, t], i) => {
-      const pct = (t.cost / maxTask * 100).toFixed(1);
-      const globalPct = ((t.cost / projectsTotal) * 100).toFixed(1);
-      const cls = i % 2 === 0 ? 'amber' : 'electric';
-      return `<div class="bar-row">
-        <span class="bar-label">${name}</span>
-        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%">
-          ${pct > 15 ? '<span class="bar-inner-label">' + globalPct + '%</span>' : ''}
-        </div></div>
-        <span class="bar-value">${fmt(t.cost)} · ${t.count}×</span>
+      return `<div class="project-item">
+        <div class="project-top">
+          <span class="project-name">${name}</span>
+          <span class="project-cost">${usd(p.cost)}</span>
+        </div>
+        <div class="project-bar"><div class="project-bar-fill" style="width:${barW}%"></div></div>
+        <div class="project-stats">
+          <span><strong>${p.executions}</strong> ejecuciones</span>
+          <span><strong>${num(p.tools)}</strong> tool calls</span>
+          <span><strong>${num(p.input + p.output)}</strong> tokens</span>
+        </div>
+        ${tasksHTML ? '<div class="task-list">' + tasksHTML + '</div>' : ''}
       </div>`;
     }).join('');
 
-    // Update note
-    document.getElementById('update-note').textContent = 'Last update: ' + data.generated;
+    // Global tasks
+    const gt = Object.entries(d.taskBreakdown || {});
+    const maxGT = gt.length ? Math.max(...gt.map(([,t]) => t.cost)) : 1;
+
+    $('global-tasks').innerHTML = gt.map(([name, t], i) => {
+      const w = (t.cost / maxGT * 100).toFixed(1);
+      const pct = ((t.cost / d.grandTotal) * 100).toFixed(1);
+      return `<div class="global-task-row">
+        <span class="global-task-label">${name}</span>
+        <div class="global-task-bar">
+          <div class="global-task-fill c${i % 7}" style="width:${w}%">
+            ${parseFloat(w) > 20 ? '<span class="global-task-inner">' + pct + '%</span>' : ''}
+          </div>
+        </div>
+        <span class="global-task-value">${usd(t.cost)} · ${t.count}×</span>
+      </div>`;
+    }).join('');
+
+    // Update
+    $('update-line').textContent = 'Última actualización: ' + d.generated;
   })
   .catch(e => {
-    document.getElementById('grand-total').textContent = 'Error loading data';
+    $('total-amount').textContent = 'Error';
     console.error(e);
   });
 </script>
