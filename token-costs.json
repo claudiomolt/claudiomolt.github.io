@@ -1,8 +1,35 @@
 {
-  "generated": "2026-02-01 18:03",
-  "grandTotal": 2.53,
-  "executions": 7,
+  "generated": "2026-02-01 18:09",
+  "grandTotal": 6.41,
+  "executions": 11,
   "projects": {
+    "wabot-platform": {
+      "cost": 3.02,
+      "executions": 2,
+      "tools": 90,
+      "input": 92,
+      "output": 33937,
+      "tasks": {
+        "code-gen": {
+          "cost": 1.01,
+          "count": 2
+        },
+        "build": {
+          "cost": 1.01,
+          "count": 2
+        },
+        "deploy": {
+          "cost": 1.0,
+          "count": 1
+        }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 3.02,
+          "calls": 2
+        }
+      }
+    },
     "newsletter": {
       "cost": 1.03,
       "executions": 3,
@@ -31,6 +58,33 @@
         "claude-opus-4-5": {
           "cost": 1.03,
           "calls": 3
+        }
+      }
+    },
+    "nostr-lightning-boilerplate": {
+      "cost": 0.85,
+      "executions": 2,
+      "tools": 41,
+      "input": 43,
+      "output": 12428,
+      "tasks": {
+        "code-gen": {
+          "cost": 0.43,
+          "count": 2
+        },
+        "build": {
+          "cost": 0.21,
+          "count": 1
+        },
+        "deploy": {
+          "cost": 0.21,
+          "count": 1
+        }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 0.85,
+          "calls": 2
         }
       }
     },
@@ -106,12 +160,16 @@
   },
   "taskBreakdown": {
     "code-gen": {
-      "cost": 0.8826,
-      "count": 6
+      "cost": 2.3226,
+      "count": 10
     },
     "deploy": {
-      "cost": 0.3445,
-      "count": 2
+      "cost": 1.5545,
+      "count": 4
+    },
+    "build": {
+      "cost": 1.4588,
+      "count": 4
     },
     "design": {
       "cost": 0.3415,
@@ -125,10 +183,6 @@
       "cost": 0.3023,
       "count": 3
     },
-    "build": {
-      "cost": 0.2388,
-      "count": 1
-    },
     "git": {
       "cost": 0.1211,
       "count": 1
@@ -136,13 +190,13 @@
   },
   "models": {
     "claude-opus-4-5": {
-      "cost": 2.43,
-      "calls": 52,
-      "input": 78,
-      "output": 39532,
-      "cacheRead": 1069174,
-      "cacheWrite": 82612,
-      "totalTokens": 1191396
+      "cost": 6.41,
+      "calls": 11,
+      "input": 229,
+      "output": 84119,
+      "cacheRead": 0,
+      "cacheWrite": 0,
+      "totalTokens": 84348
     }
   }
 }
