@@ -21,7 +21,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
   margin-bottom: 2rem;
   position: relative;
@@ -48,41 +48,23 @@
   margin: 0.3rem 0;
   letter-spacing: -1px;
 }
-.total-card .generated {
+.total-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.total-stat {
   font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
   color: var(--muted);
-  font-size: 0.75rem;
 }
-
-/* Stats row */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-.stat-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 1.2rem;
-  text-align: center;
-}
-.stat-card .stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
+.total-stat strong {
   color: var(--text);
-}
-.stat-card .stat-label {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--muted);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: 0.3rem;
+  font-size: 1.1rem;
 }
 
-/* Section cards */
+/* Section */
 .section-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -97,7 +79,161 @@
 }
 .section-card h2 span { color: var(--amber); }
 
-/* Bar chart */
+/* Project cards grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.project-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--electric);
+}
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.project-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--amber);
+  font-weight: 600;
+}
+.project-cost {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.project-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+.project-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--electric), #4f8ef7);
+  transition: width 0.6s ease;
+}
+.project-meta {
+  display: flex;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+}
+.project-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.task-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  min-width: 70px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.task-bar-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.task-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--amber), #ffaa33);
+  transition: width 0.6s ease;
+  min-width: 1px;
+}
+.task-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+  min-width: 45px;
+}
+
+/* Overhead card */
+.overhead-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.overhead-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+.overhead-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+.overhead-title {
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.overhead-title span { color: var(--amber); }
+.overhead-cost {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.overhead-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.overhead-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.overhead-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Bar chart for task breakdown */
 .bar-chart {
   display: flex;
   flex-direction: column;
@@ -112,160 +248,58 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   color: var(--muted);
-  min-width: 120px;
+  min-width: 100px;
   text-align: right;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .bar-track {
   flex: 1;
-  height: 24px;
+  height: 22px;
   background: rgba(255,255,255,0.03);
   border-radius: 4px;
   overflow: hidden;
-  position: relative;
 }
 .bar-fill {
   height: 100%;
   border-radius: 4px;
   transition: width 0.6s ease;
   min-width: 2px;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
 }
 .bar-fill.amber { background: linear-gradient(90deg, var(--amber), #ffaa33); }
 .bar-fill.electric { background: linear-gradient(90deg, var(--electric), #4f8ef7); }
+.bar-inner-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(0,0,0,0.7);
+  font-weight: 600;
+  white-space: nowrap;
+}
 .bar-value {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
   color: var(--muted);
-  min-width: 70px;
+  min-width: 80px;
 }
 
-/* Table */
-.cost-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-.cost-table th {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: left;
-  padding: 0.6rem 0.5rem;
-  border-bottom: 1px solid var(--card-border);
-}
-.cost-table td {
-  padding: 0.6rem 0.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--text);
-}
-.cost-table tr:hover td { background: rgba(255,255,255,0.02); }
-.cost-table .project-name { color: var(--amber); font-weight: 600; }
-.cost-table .num { text-align: right; }
-
-/* Date chart */
-.date-chart {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 160px;
-  padding-top: 1rem;
-}
-.date-bar-wrap {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  justify-content: flex-end;
-}
-.date-bar {
-  width: 100%;
-  max-width: 60px;
-  border-radius: 4px 4px 0 0;
-  background: linear-gradient(180deg, var(--amber), #cc7000);
-  transition: height 0.6s ease;
-  position: relative;
-}
-.date-bar:hover { opacity: 0.8; }
-.date-bar .tooltip {
-  position: absolute;
-  top: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--amber);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.date-bar:hover .tooltip { opacity: 1; }
-.date-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--muted);
-  margin-top: 0.4rem;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  white-space: nowrap;
-}
-
-/* Agent breakdown */
-.agent-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-}
-.agent-card {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  padding: 1.2rem;
+/* Footer update */
+.update-note {
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.agent-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-}
-.agent-card.main::before { background: var(--amber); }
-.agent-card.gorilator::before { background: var(--electric); }
-.agent-card.academy::before { background: #10b981; }
-.agent-card.travels::before { background: #8b5cf6; }
-.agent-name {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.agent-cost {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0.3rem 0;
-}
-.agent-pct {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 600px) {
   .total-card .amount { font-size: 2.5rem; }
-  .bar-label { min-width: 80px; font-size: 0.65rem; }
-  .cost-table { font-size: 0.7rem; }
-  .cost-table th, .cost-table td { padding: 0.4rem 0.3rem; }
-  .date-chart { height: 120px; }
+  .total-stats { flex-direction: column; gap: 0.5rem; }
+  .project-grid { grid-template-columns: 1fr; }
+  .bar-label { min-width: 70px; font-size: 0.65rem; }
+  .overhead-header { flex-direction: column; }
+  .overhead-meta { flex-wrap: wrap; }
 }
 </style>
 <link rel="stylesheet" href="responsive.css">
@@ -286,52 +320,28 @@
 </div>
 
 <div class="content">
-  <!-- Grand Total -->
   <div class="total-card">
     <div class="label">Total Spent</div>
     <div class="amount" id="grand-total">—</div>
-    <div class="generated" id="generated">loading...</div>
+    <div class="total-stats" id="total-stats"></div>
   </div>
 
-  <!-- Quick stats -->
-  <div class="stats-row" id="stats-row"></div>
-
-  <!-- By Agent -->
-  <div class="section-card">
-    <h2><span>⚙</span> By Agent</h2>
-    <div class="agent-grid" id="agent-grid"></div>
-  </div>
-
-  <!-- Project bars -->
+  <!-- By Project (excluding overhead) -->
   <div class="section-card">
     <h2><span>📊</span> By Project</h2>
-    <div class="bar-chart" id="project-bars"></div>
+    <div class="project-grid" id="project-grid"></div>
   </div>
 
-  <!-- Project table -->
+  <!-- Overhead -->
+  <div class="overhead-card" id="overhead-card" style="display:none"></div>
+
+  <!-- Task Breakdown -->
   <div class="section-card">
-    <h2><span>📋</span> Breakdown</h2>
-    <div style="overflow-x:auto">
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th class="num">Cost</th>
-            <th class="num">Sessions</th>
-            <th class="num">Tokens In</th>
-            <th class="num">Tokens Out</th>
-          </tr>
-        </thead>
-        <tbody id="project-table"></tbody>
-      </table>
-    </div>
+    <h2><span>🔧</span> By Task Type</h2>
+    <div class="bar-chart" id="task-bars"></div>
   </div>
 
-  <!-- By Date -->
-  <div class="section-card">
-    <h2><span>📅</span> By Date</h2>
-    <div class="date-chart" id="date-chart"></div>
-  </div>
+  <div class="update-note" id="update-note"></div>
 </div>
 
 <footer>
@@ -340,81 +350,99 @@
 
 <script src="hamburger.js"></script>
 <script>
-const fmt = n => '$' + n.toFixed(2) + ' USD';
-const fmtShort = n => '$' + n.toFixed(2);
+const fmt = n => '$' + n.toFixed(2);
 const fmtNum = n => n.toLocaleString('en-US');
 
 fetch('token-costs.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
     // Grand total
-    document.getElementById('grand-total').textContent = fmt(data.grandTotal);
-    const d = new Date(data.generated);
-    document.getElementById('generated').textContent = 'Updated ' + d.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}) + ' ' + d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('grand-total').textContent = fmt(data.grandTotal) + ' USD';
+    document.getElementById('total-stats').innerHTML =
+      `<span class="total-stat"><strong>${data.executions}</strong> executions</span>` +
+      `<span class="total-stat"><strong>${Object.keys(data.projects).length}</strong> projects</span>`;
 
-    // Quick stats
-    const projects = Object.keys(data.byProject);
-    const totalSessions = Object.values(data.byProject).reduce((a,b) => a + b.sessions, 0);
-    const totalTokens = Object.values(data.byProject).reduce((a,b) => a + b.input + b.output, 0);
-    const days = Object.keys(data.byDate).length;
-    const statsHTML = [
-      { v: projects.length, l: 'Projects' },
-      { v: totalSessions, l: 'Sessions' },
-      { v: fmtNum(totalTokens), l: 'Total Tokens' },
-      { v: days, l: 'Active Days' },
-    ].map(s => `<div class="stat-card"><div class="stat-value">${s.v}</div><div class="stat-label">${s.l}</div></div>`).join('');
-    document.getElementById('stats-row').innerHTML = statsHTML;
+    // Projects (exclude overhead)
+    const projects = Object.entries(data.projects).filter(([k]) => k !== 'overhead');
+    const maxProjectCost = Math.max(...projects.map(([,p]) => p.cost));
 
-    // Agents
-    const agentColors = { main: 'main', gorilator: 'gorilator', academy: 'academy', travels: 'travels' };
-    const agentEmoji = { main: '🤖', gorilator: '🦍', academy: '🎓', travels: '✈️' };
-    document.getElementById('agent-grid').innerHTML = Object.entries(data.byAgent)
-      .sort((a,b) => b[1] - a[1])
-      .map(([name, cost]) => {
-        const pct = ((cost / data.grandTotal) * 100).toFixed(1);
-        return `<div class="agent-card ${agentColors[name] || ''}">
-          <div class="agent-name">${agentEmoji[name] || '🤖'} ${name}</div>
-          <div class="agent-cost">${fmtShort(cost)}</div>
-          <div class="agent-pct">${pct}%</div>
+    document.getElementById('project-grid').innerHTML = projects
+      .sort((a, b) => b[1].cost - a[1].cost)
+      .map(([name, p]) => {
+        const barPct = (p.cost / maxProjectCost * 100).toFixed(1);
+        const tasks = p.tasks ? Object.entries(p.tasks).sort((a,b) => b[1].cost - a[1].cost) : [];
+        const maxTaskCost = tasks.length ? Math.max(...tasks.map(t => t[1].cost)) : 1;
+        const tasksHTML = tasks.map(([tName, t]) => {
+          const tPct = (t.cost / maxTaskCost * 100).toFixed(1);
+          return `<div class="task-row">
+            <span class="task-name">${tName}</span>
+            <div class="task-bar-track"><div class="task-bar-fill" style="width:${tPct}%"></div></div>
+            <span class="task-value">${fmt(t.cost)} (${t.count})</span>
+          </div>`;
+        }).join('');
+        return `<div class="project-card">
+          <div class="project-header">
+            <span class="project-name">${name}</span>
+            <span class="project-cost">${fmt(p.cost)}</span>
+          </div>
+          <div class="project-bar-track"><div class="project-bar-fill" style="width:${barPct}%"></div></div>
+          <div class="project-meta">
+            <span>${p.executions} exec</span>
+            <span>${fmtNum(p.tools)} tools</span>
+            <span>${fmtNum(p.input + p.output)} tokens</span>
+          </div>
+          ${tasks.length ? '<div class="project-tasks">' + tasksHTML + '</div>' : ''}
         </div>`;
       }).join('');
 
-    // Project bars
-    const maxCost = Math.max(...Object.values(data.byProject).map(p => p.cost));
-    document.getElementById('project-bars').innerHTML = Object.entries(data.byProject)
-      .sort((a,b) => b[1].cost - a[1].cost)
-      .map(([name, p], i) => {
-        const pct = (p.cost / maxCost * 100).toFixed(1);
-        const cls = i === 0 ? 'amber' : 'electric';
-        return `<div class="bar-row">
-          <span class="bar-label">${name}</span>
-          <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>
-          <span class="bar-value">${fmtShort(p.cost)}</span>
+    // Overhead
+    const oh = data.projects.overhead;
+    if (oh) {
+      const card = document.getElementById('overhead-card');
+      card.style.display = '';
+      const ohTasks = oh.tasks ? Object.entries(oh.tasks).sort((a,b) => b[1].cost - a[1].cost) : [];
+      const maxOhTask = ohTasks.length ? Math.max(...ohTasks.map(t => t[1].cost)) : 1;
+      const ohTasksHTML = ohTasks.map(([tName, t]) => {
+        const tPct = (t.cost / maxOhTask * 100).toFixed(1);
+        return `<div class="task-row">
+          <span class="task-name">${tName}</span>
+          <div class="task-bar-track"><div class="task-bar-fill" style="width:${tPct}%"></div></div>
+          <span class="task-value">${fmt(t.cost)} (${t.count})</span>
         </div>`;
       }).join('');
+      card.innerHTML = `
+        <div class="overhead-header">
+          <span class="overhead-title"><span>⚙️</span> Overhead</span>
+          <span class="overhead-cost">${fmt(oh.cost)}</span>
+        </div>
+        <div class="overhead-desc">Infrastructure costs — heartbeats, general conversations, maintenance</div>
+        <div class="overhead-meta">
+          <span>${oh.executions} exec</span>
+          <span>${fmtNum(oh.tools)} tools</span>
+          <span>${fmtNum(oh.input + oh.output)} tokens</span>
+          <span>${((oh.cost / data.grandTotal) * 100).toFixed(0)}% of total</span>
+        </div>
+        ${ohTasks.length ? '<div class="overhead-tasks">' + ohTasksHTML + '</div>' : ''}`;
+    }
 
-    // Project table
-    document.getElementById('project-table').innerHTML = Object.entries(data.byProject)
-      .sort((a,b) => b[1].cost - a[1].cost)
-      .map(([name, p]) => `<tr>
-        <td class="project-name">${name}</td>
-        <td class="num">${fmtShort(p.cost)}</td>
-        <td class="num">${p.sessions}</td>
-        <td class="num">${fmtNum(p.input)}</td>
-        <td class="num">${fmtNum(p.output)}</td>
-      </tr>`).join('');
-
-    // Date chart
-    const dates = Object.entries(data.byDate);
-    const maxDay = Math.max(...dates.map(d => d[1]));
-    document.getElementById('date-chart').innerHTML = dates.map(([date, cost]) => {
-      const h = (cost / maxDay * 100).toFixed(1);
-      const short = date.slice(5); // MM-DD
-      return `<div class="date-bar-wrap">
-        <div class="date-bar" style="height:${h}%"><span class="tooltip">${fmtShort(cost)}</span></div>
-        <span class="date-label">${short}</span>
+    // Task breakdown
+    const tasks = Object.entries(data.taskBreakdown).sort((a,b) => b[1].cost - a[1].cost);
+    const maxTask = tasks.length ? tasks[0][1].cost : 1;
+    document.getElementById('task-bars').innerHTML = tasks.map(([name, t], i) => {
+      const pct = (t.cost / maxTask * 100).toFixed(1);
+      const globalPct = ((t.cost / data.grandTotal) * 100).toFixed(1);
+      const cls = i % 2 === 0 ? 'amber' : 'electric';
+      return `<div class="bar-row">
+        <span class="bar-label">${name}</span>
+        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%">
+          ${pct > 15 ? '<span class="bar-inner-label">' + globalPct + '%</span>' : ''}
+        </div></div>
+        <span class="bar-value">${fmt(t.cost)} · ${t.count}×</span>
       </div>`;
     }).join('');
+
+    // Update note
+    document.getElementById('update-note').textContent = 'Last update: ' + data.generated;
   })
   .catch(e => {
     document.getElementById('grand-total').textContent = 'Error loading data';

@@ -1,67 +1,202 @@
 {
-  "generated": "2026-02-01T17:39:12.714383",
-  "grandTotal": 248.8763,
-  "byAgent": {
-    "main": 203.5058,
-    "gorilator": 33.3465,
-    "academy": 8.3228,
-    "travels": 3.7012
-  },
-  "byDate": {
-    "2026-01-28": 0.0427,
-    "2026-01-29": 60.5649,
-    "2026-01-30": 21.5356,
-    "2026-01-31": 124.6277,
-    "2026-02-01": 42.1054
-  },
-  "byProject": {
-    "general": {
-      "cost": 201.0603,
-      "sessions": 29,
-      "input": 90882,
-      "output": 302685
-    },
-    "moltbook": {
-      "cost": 16.9778,
-      "sessions": 1,
-      "input": 2145,
-      "output": 80739
-    },
-    "gorilator": {
-      "cost": 16.3687,
-      "sessions": 1,
-      "input": 1886,
-      "output": 86859
-    },
-    "academy": {
-      "cost": 8.3228,
-      "sessions": 3,
-      "input": 184,
-      "output": 37394
-    },
-    "travels": {
-      "cost": 3.7012,
-      "sessions": 2,
-      "input": 717,
-      "output": 28263
-    },
-    "tippit": {
-      "cost": 1.312,
-      "sessions": 2,
-      "input": 39,
-      "output": 19218
+  "generated": "2026-02-01 17:54",
+  "grandTotal": 250.71,
+  "projects": {
+    "overhead": {
+      "cost": 147.893,
+      "executions": 34,
+      "tools": 1254,
+      "input": 94738,
+      "output": 397404,
+      "tasks": {
+        "general": {
+          "cost": 91.3964,
+          "count": 28
+        },
+        "git": {
+          "cost": 0.984,
+          "count": 3
+        },
+        "deploy": {
+          "cost": 36.0971,
+          "count": 2
+        },
+        "planning": {
+          "cost": 1.0477,
+          "count": 3
+        },
+        "research": {
+          "cost": 16.3687,
+          "count": 1
+        },
+        "code-gen": {
+          "cost": 1.0444,
+          "count": 2
+        },
+        "design": {
+          "cost": 0.9545,
+          "count": 1
+        }
+      }
     },
     "newsletter": {
-      "cost": 1.0278,
-      "sessions": 3,
-      "input": 41,
-      "output": 14555
+      "cost": 60.3578,
+      "executions": 4,
+      "tools": 436,
+      "input": 767,
+      "output": 106256,
+      "tasks": {
+        "code-gen": {
+          "cost": 0.257,
+          "count": 3
+        },
+        "newsletter": {
+          "cost": 29.922,
+          "count": 4
+        },
+        "planning": {
+          "cost": 0.257,
+          "count": 3
+        },
+        "research": {
+          "cost": 0.257,
+          "count": 3
+        },
+        "git": {
+          "cost": 29.665,
+          "count": 1
+        }
+      }
+    },
+    "portfolio-site": {
+      "cost": 41.0416,
+      "executions": 2,
+      "tools": 172,
+      "input": 382,
+      "output": 60886,
+      "tasks": {
+        "git": {
+          "cost": 13.629,
+          "count": 2
+        },
+        "site-update": {
+          "cost": 13.629,
+          "count": 2
+        },
+        "newsletter": {
+          "cost": 13.5517,
+          "count": 1
+        },
+        "code-gen": {
+          "cost": 0.0773,
+          "count": 1
+        },
+        "planning": {
+          "cost": 0.0773,
+          "count": 1
+        },
+        "design": {
+          "cost": 0.0773,
+          "count": 1
+        }
+      }
+    },
+    "tippit-lightning-pitch": {
+      "cost": 1.312,
+      "executions": 2,
+      "tools": 45,
+      "input": 39,
+      "output": 19218,
+      "tasks": {
+        "deploy": {
+          "cost": 0.1194,
+          "count": 1
+        },
+        "build": {
+          "cost": 0.1194,
+          "count": 1
+        },
+        "code-gen": {
+          "cost": 0.3179,
+          "count": 2
+        },
+        "git": {
+          "cost": 0.3179,
+          "count": 2
+        },
+        "planning": {
+          "cost": 0.1194,
+          "count": 1
+        },
+        "design": {
+          "cost": 0.1194,
+          "count": 1
+        },
+        "seo": {
+          "cost": 0.1985,
+          "count": 1
+        }
+      }
     },
     "proof-of-contribution": {
       "cost": 0.1057,
-      "sessions": 1,
+      "executions": 1,
+      "tools": 1,
       "input": 4,
-      "output": 245
+      "output": 245,
+      "tasks": {
+        "deploy": {
+          "cost": 0.1057,
+          "count": 1
+        }
+      }
     }
-  }
+  },
+  "taskBreakdown": {
+    "general": {
+      "cost": 91.3964,
+      "count": 28
+    },
+    "git": {
+      "cost": 44.5959,
+      "count": 8
+    },
+    "newsletter": {
+      "cost": 43.4737,
+      "count": 5
+    },
+    "deploy": {
+      "cost": 36.3222,
+      "count": 4
+    },
+    "research": {
+      "cost": 16.6257,
+      "count": 4
+    },
+    "site-update": {
+      "cost": 13.629,
+      "count": 2
+    },
+    "code-gen": {
+      "cost": 1.6966,
+      "count": 8
+    },
+    "planning": {
+      "cost": 1.5014,
+      "count": 8
+    },
+    "design": {
+      "cost": 1.1512,
+      "count": 3
+    },
+    "seo": {
+      "cost": 0.1985,
+      "count": 1
+    },
+    "build": {
+      "cost": 0.1194,
+      "count": 1
+    }
+  },
+  "executions": 43
 }
