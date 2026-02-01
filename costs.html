@@ -248,6 +248,9 @@
   <div class="section-title">Por Tipo de Tarea</div>
   <div class="global-tasks" id="global-tasks"></div>
 
+  <div class="section-title">Por Modelo</div>
+  <div class="global-tasks" id="models"></div>
+
   <div class="update-line" id="update-line"></div>
 </div>
 
@@ -286,7 +289,11 @@ fetch('token-costs.json?v=' + Date.now())
         </div>`;
       }).join('');
 
-      return `<div class="project-item">
+      const modelsHTML = p.models ? Object.entries(p.models).map(([mName, m]) =>
+        `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px;display:inline-block;margin-top:0.6rem">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`
+      ).join(' ') : '';
+
+      return `<div class="project-item" data-project="${name}">
         <div class="project-top">
           <span class="project-name">${name}</span>
           <span class="project-cost">${usd(p.cost)}</span>
@@ -298,6 +305,7 @@ fetch('token-costs.json?v=' + Date.now())
           <span><strong>${num(p.input + p.output)}</strong> tokens</span>
         </div>
         ${tasksHTML ? '<div class="task-list">' + tasksHTML + '</div>' : ''}
+        ${modelsHTML}
       </div>`;
     }).join('');
 
@@ -318,6 +326,45 @@ fetch('token-costs.json?v=' + Date.now())
         <span class="global-task-value">${usd(t.cost)} · ${t.count}×</span>
       </div>`;
     }).join('');
+
+    // Models
+    if (d.models) {
+      const models = Object.entries(d.models);
+      const maxModel = Math.max(...models.map(([,m]) => m.cost));
+      $('models').innerHTML = models.map(([name, m], i) => {
+        const w = (m.cost / maxModel * 100).toFixed(1);
+        return `<div class="global-task-row">
+          <span class="global-task-label">${name}</span>
+          <div class="global-task-bar">
+            <div class="global-task-fill c${i % 7}" style="width:${w}%">
+              ${parseFloat(w) > 15 ? '<span class="global-task-inner">' + usd(m.cost) + '</span>' : ''}
+            </div>
+          </div>
+          <span class="global-task-value">${m.calls} calls · ${num(m.totalTokens)} tok</span>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin:-0.2rem 0 0.6rem 0;padding-left:calc(90px + 0.8rem);font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted)">
+          <span>in: ${num(m.input)}</span>
+          <span>out: ${num(m.output)}</span>
+          <span>cache read: ${num(m.cacheRead)}</span>
+          <span>cache write: ${num(m.cacheWrite)}</span>
+        </div>`;
+      }).join('');
+    }
+
+    // Per-project models (add to project cards)
+    entries.forEach(([name, p]) => {
+      if (p.models) {
+        const card = document.querySelector(`[data-project="${name}"]`);
+        if (card) {
+          const modelsDiv = card.querySelector('.project-models');
+          if (modelsDiv) {
+            modelsDiv.innerHTML = Object.entries(p.models).map(([mName, m]) =>
+              `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`
+            ).join(' ');
+          }
+        }
+      }
+    });
 
     // Update
     $('update-line').textContent = 'Última actualización: ' + d.generated;

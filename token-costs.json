@@ -26,6 +26,12 @@
           "cost": 0.1211,
           "count": 1
         }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 1.03,
+          "calls": 3
+        }
       }
     },
     "tippit-lightning-pitch": {
@@ -47,6 +53,12 @@
           "cost": 0.2388,
           "count": 1
         }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 0.72,
+          "calls": 1
+        }
       }
     },
     "portfolio-site": {
@@ -64,6 +76,12 @@
           "cost": 0.3415,
           "count": 2
         }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 0.68,
+          "calls": 2
+        }
       }
     },
     "proof-of-contribution": {
@@ -76,6 +94,12 @@
         "deploy": {
           "cost": 0.1057,
           "count": 1
+        }
+      },
+      "models": {
+        "claude-opus-4-5": {
+          "cost": 0.11,
+          "calls": 1
         }
       }
     }
@@ -108,6 +132,17 @@
     "git": {
       "cost": 0.1211,
       "count": 1
+    }
+  },
+  "models": {
+    "claude-opus-4-5": {
+      "cost": 2.43,
+      "calls": 52,
+      "input": 78,
+      "output": 39532,
+      "cacheRead": 1069174,
+      "cacheWrite": 82612,
+      "totalTokens": 1191396
     }
   }
 }
