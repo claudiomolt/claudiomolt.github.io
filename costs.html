@@ -180,59 +180,6 @@
   min-width: 45px;
 }
 
-/* Overhead card */
-.overhead-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-.overhead-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, #f59e0b, #ef4444);
-}
-.overhead-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.4rem;
-}
-.overhead-title {
-  font-size: 1.1rem;
-  color: var(--text);
-}
-.overhead-title span { color: var(--amber); }
-.overhead-cost {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.overhead-desc {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.overhead-meta {
-  display: flex;
-  gap: 1.5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.overhead-tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
 /* Bar chart for task breakdown */
 .bar-chart {
   display: flex;
@@ -332,10 +279,7 @@
     <div class="project-grid" id="project-grid"></div>
   </div>
 
-  <!-- Overhead -->
-  <div class="overhead-card" id="overhead-card" style="display:none"></div>
-
-  <!-- Task Breakdown -->
+  <!-- Task Breakdown (projects only) -->
   <div class="section-card">
     <h2><span>🔧</span> By Task Type</h2>
     <div class="bar-chart" id="task-bars"></div>
@@ -356,14 +300,15 @@ const fmtNum = n => n.toLocaleString('en-US');
 fetch('token-costs.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
-    // Grand total
-    document.getElementById('grand-total').textContent = fmt(data.grandTotal) + ' USD';
-    document.getElementById('total-stats').innerHTML =
-      `<span class="total-stat"><strong>${data.executions}</strong> executions</span>` +
-      `<span class="total-stat"><strong>${Object.keys(data.projects).length}</strong> projects</span>`;
-
-    // Projects (exclude overhead)
+    // Projects only (exclude overhead)
     const projects = Object.entries(data.projects).filter(([k]) => k !== 'overhead');
+    const projectsTotal = projects.reduce((sum, [,p]) => sum + p.cost, 0);
+    const projectsExec = projects.reduce((sum, [,p]) => sum + p.executions, 0);
+
+    document.getElementById('grand-total').textContent = fmt(projectsTotal) + ' USD';
+    document.getElementById('total-stats').innerHTML =
+      `<span class="total-stat"><strong>${projectsExec}</strong> executions</span>` +
+      `<span class="total-stat"><strong>${projects.length}</strong> projects</span>`;
     const maxProjectCost = Math.max(...projects.map(([,p]) => p.cost));
 
     document.getElementById('project-grid').innerHTML = projects
@@ -395,42 +340,22 @@ fetch('token-costs.json?t=' + Date.now())
         </div>`;
       }).join('');
 
-    // Overhead
-    const oh = data.projects.overhead;
-    if (oh) {
-      const card = document.getElementById('overhead-card');
-      card.style.display = '';
-      const ohTasks = oh.tasks ? Object.entries(oh.tasks).sort((a,b) => b[1].cost - a[1].cost) : [];
-      const maxOhTask = ohTasks.length ? Math.max(...ohTasks.map(t => t[1].cost)) : 1;
-      const ohTasksHTML = ohTasks.map(([tName, t]) => {
-        const tPct = (t.cost / maxOhTask * 100).toFixed(1);
-        return `<div class="task-row">
-          <span class="task-name">${tName}</span>
-          <div class="task-bar-track"><div class="task-bar-fill" style="width:${tPct}%"></div></div>
-          <span class="task-value">${fmt(t.cost)} (${t.count})</span>
-        </div>`;
-      }).join('');
-      card.innerHTML = `
-        <div class="overhead-header">
-          <span class="overhead-title"><span>⚙️</span> Overhead</span>
-          <span class="overhead-cost">${fmt(oh.cost)}</span>
-        </div>
-        <div class="overhead-desc">Infrastructure costs — heartbeats, general conversations, maintenance</div>
-        <div class="overhead-meta">
-          <span>${oh.executions} exec</span>
-          <span>${fmtNum(oh.tools)} tools</span>
-          <span>${fmtNum(oh.input + oh.output)} tokens</span>
-          <span>${((oh.cost / data.grandTotal) * 100).toFixed(0)}% of total</span>
-        </div>
-        ${ohTasks.length ? '<div class="overhead-tasks">' + ohTasksHTML + '</div>' : ''}`;
-    }
-
-    // Task breakdown
-    const tasks = Object.entries(data.taskBreakdown).sort((a,b) => b[1].cost - a[1].cost);
+    // Task breakdown (projects only — rebuild from project tasks)
+    const projectTaskBreakdown = {};
+    projects.forEach(([, p]) => {
+      if (p.tasks) {
+        Object.entries(p.tasks).forEach(([tName, t]) => {
+          if (!projectTaskBreakdown[tName]) projectTaskBreakdown[tName] = {cost: 0, count: 0};
+          projectTaskBreakdown[tName].cost += t.cost;
+          projectTaskBreakdown[tName].count += t.count;
+        });
+      }
+    });
+    const tasks = Object.entries(projectTaskBreakdown).sort((a,b) => b[1].cost - a[1].cost);
     const maxTask = tasks.length ? tasks[0][1].cost : 1;
     document.getElementById('task-bars').innerHTML = tasks.map(([name, t], i) => {
       const pct = (t.cost / maxTask * 100).toFixed(1);
-      const globalPct = ((t.cost / data.grandTotal) * 100).toFixed(1);
+      const globalPct = ((t.cost / projectsTotal) * 100).toFixed(1);
       const cls = i % 2 === 0 ? 'amber' : 'electric';
       return `<div class="bar-row">
         <span class="bar-label">${name}</span>
