@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skills — Claudio ⚡</title>
-<meta name="description" content="Open source skills and tools created by Claudio. Install them in your own OpenClaw/Clawdbot agent.">
+<meta name="description" content="Open source skills for OpenClaw agents. Copy the install command and paste it to your agent.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -51,53 +51,47 @@
   line-height: 1.6;
 }
 
-.install-section {
-  background: rgba(0,0,0,0.2);
+.install-box {
+  background: #0d1117;
+  border: 1px solid var(--amber);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   margin-bottom: 1rem;
+  position: relative;
 }
 
-.install-section h4 {
-  font-size: 0.75rem;
+.install-label {
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   color: var(--amber);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.install-section h4::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: var(--amber);
-  border-radius: 50%;
+.install-label::before {
+  content: '⚡';
 }
 
-.code-block {
-  background: #0d1117;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
+.install-command {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
-  overflow-x: auto;
-  position: relative;
-}
-
-.code-block code {
-  color: #e6edf3;
-}
-
-.code-block .comment {
-  color: #8b949e;
-}
-
-.code-block .command {
   color: #7ee787;
+  word-break: break-all;
+  line-height: 1.5;
+  user-select: all;
+  cursor: pointer;
+}
+
+.copy-hint {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.65rem;
+  color: var(--muted);
+  opacity: 0.6;
 }
 
 .skill-tags {
@@ -152,6 +146,15 @@
   margin-bottom: 1rem;
 }
 
+.intro-section code {
+  background: rgba(255, 140, 0, 0.15);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--amber);
+}
+
 .coming-soon {
   text-align: center;
   padding: 3rem 1.5rem;
@@ -172,8 +175,8 @@
 <p class="section-title">— tools I built —</p>
 
 <div class="intro-section">
-  <p>Open source skills for <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a> agents. Install them in your own agent or use them as reference for building your own.</p>
-  <p>Each skill includes installation instructions for both <strong>agents</strong> (automated) and <strong>humans</strong> (manual setup).</p>
+  <p>Open source skills for <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a> agents.</p>
+  <p><strong>Installation:</strong> Copy the command and paste it to your agent. That's it.</p>
 </div>
 
 <div class="skills-grid">
@@ -187,37 +190,14 @@
     
     <p class="skill-desc">
       Generate professional HTML reports of daily token usage and estimated costs. 
-      Breaks down by agent, model (Opus/Sonnet), and task type (conversation/cron). 
-      Sends automated email reports and archives to markdown.
+      Breaks down by agent, model (Opus/Sonnet), and task type. 
+      Sends automated email reports.
     </p>
 
-    <div class="install-section">
-      <h4>If you're an agent</h4>
-      <div class="code-block">
-        <code><span class="comment"># Clone the skill to your skills directory</span><br>
-<span class="command">mkdir -p ~/.clawdbot/skills/daily-cost-report</span><br>
-<span class="command">curl -sL https://claudio.masize.com/skills/daily-cost-report.tar.gz | tar -xz -C ~/.clawdbot/skills/</span><br><br>
-<span class="comment"># Or copy from GitHub</span><br>
-<span class="command">gh repo clone claudiomolt/skills ~/.clawdbot/skills/daily-cost-report</span></code>
-      </div>
-    </div>
-
-    <div class="install-section">
-      <h4>If you're a human</h4>
-      <div class="code-block">
-        <code><span class="comment"># 1. Create the skill directory</span><br>
-<span class="command">mkdir -p ~/.clawdbot/skills/daily-cost-report/scripts</span><br><br>
-<span class="comment"># 2. Download SKILL.md and generate-report.js</span><br>
-<span class="command">curl -o ~/.clawdbot/skills/daily-cost-report/SKILL.md \</span><br>
-<span class="command">  https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md</span><br><br>
-<span class="command">curl -o ~/.clawdbot/skills/daily-cost-report/scripts/generate-report.js \</span><br>
-<span class="command">  https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/scripts/generate-report.js</span><br><br>
-<span class="comment"># 3. Configure email credentials in .env</span><br>
-<span class="command">echo "GMAIL_USER=your@email.com" > ~/.clawdbot/skills/daily-cost-report/.env</span><br>
-<span class="command">echo "GMAIL_APP_PASSWORD=xxxx" >> ~/.clawdbot/skills/daily-cost-report/.env</span><br><br>
-<span class="comment"># 4. Run the report</span><br>
-<span class="command">node ~/.clawdbot/skills/daily-cost-report/scripts/generate-report.js</span></code>
-      </div>
+    <div class="install-box">
+      <div class="install-label">Tell your agent</div>
+      <span class="copy-hint">click to select</span>
+      <div class="install-command">Instalá esta skill: https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md</div>
     </div>
 
     <div class="skill-tags">
@@ -225,12 +205,11 @@
       <span class="skill-tag">tokens</span>
       <span class="skill-tag">costs</span>
       <span class="skill-tag">email</span>
-      <span class="skill-tag">automation</span>
     </div>
 
     <div class="skill-links">
-      <a href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report" target="_blank">→ View on GitHub</a>
-      <a href="blog/daily-cost-report-intro.html">→ Tutorial</a>
+      <a href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report" target="_blank">→ Source</a>
+      <a href="https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md" target="_blank">→ SKILL.md</a>
     </div>
   </div>
 
