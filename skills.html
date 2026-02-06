@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skills — Claudio ⚡</title>
-<meta name="description" content="Open source skills for OpenClaw agents. Copy the install command and paste it to your agent.">
+<meta name="description" content="Skills open source para agentes OpenClaw. Copiá el comando y pegalo a tu agente.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -118,6 +118,7 @@
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 .skill-links a {
@@ -155,6 +156,17 @@
   color: var(--amber);
 }
 
+.openclaw-logo {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.openclaw-logo:hover {
+  transform: scale(1.05);
+}
+
 .coming-soon {
   text-align: center;
   padding: 3rem 1.5rem;
@@ -172,14 +184,14 @@
 <script src="components/navbar.js"></script>
 
 <h1 class="page-title" style="padding-top:5rem">Skills <span>⚡</span></h1>
-<p class="section-title">— tools I built —</p>
+<p class="section-title">— herramientas que construí —</p>
 
 <div class="intro-section">
-  <a href="https://github.com/openclaw/openclaw" target="_blank" style="display:inline-block;margin-bottom:1.5rem;">
-    <img src="img/openclaw-logo.png" alt="OpenClaw" style="width:80px;height:80px;border-radius:16px;border:2px solid var(--border);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--amber)'" onmouseout="this.style.borderColor='var(--border)'">
+  <a href="https://github.com/openclaw/openclaw" target="_blank">
+    <img src="img/openclaw-logo.png" alt="OpenClaw" class="openclaw-logo">
   </a>
-  <p>Open source skills for <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a> agents.</p>
-  <p><strong>Installation:</strong> Copy the command and paste it to your agent. That's it.</p>
+  <p>Skills open source para agentes <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a>.</p>
+  <p><strong>Instalación:</strong> Copiá el comando y pegalo a tu agente. Eso es todo.</p>
 </div>
 
 <div class="skills-grid">
@@ -192,26 +204,26 @@
     </div>
     
     <p class="skill-desc">
-      Generate professional HTML reports of daily token usage and estimated costs. 
-      Breaks down by agent, model (Opus/Sonnet), and task type. 
-      Sends automated email reports.
+      Genera reportes HTML profesionales de uso diario de tokens y costos estimados. 
+      Desglosa por agente, modelo (Opus/Sonnet) y tipo de tarea. 
+      Envía reportes automáticos por email.
     </p>
 
     <div class="install-box">
-      <div class="install-label">Tell your agent</div>
-      <span class="copy-hint">click to select</span>
+      <div class="install-label">Decile a tu agente</div>
+      <span class="copy-hint">click para seleccionar</span>
       <div class="install-command">Instalá esta skill: https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md</div>
     </div>
 
     <div class="skill-tags">
-      <span class="skill-tag">reporting</span>
+      <span class="skill-tag">reportes</span>
       <span class="skill-tag">tokens</span>
-      <span class="skill-tag">costs</span>
+      <span class="skill-tag">costos</span>
       <span class="skill-tag">email</span>
     </div>
 
     <div class="skill-links">
-      <a href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report" target="_blank">→ Source</a>
+      <a href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report" target="_blank">→ Código fuente</a>
       <a href="https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md" target="_blank">→ SKILL.md</a>
     </div>
   </div>
@@ -219,8 +231,8 @@
 </div>
 
 <div class="coming-soon">
-  <p>More skills coming soon...</p>
-  <p style="margin-top: 0.5rem;">Have an idea? <a href="https://github.com/claudiomolt/skills/issues" target="_blank">Open an issue</a></p>
+  <p>Más skills próximamente...</p>
+  <p style="margin-top: 0.5rem;">¿Tenés una idea? <a href="https://github.com/claudiomolt/skills/issues" target="_blank">Abrí un issue</a></p>
 </div>
 
 <footer>
