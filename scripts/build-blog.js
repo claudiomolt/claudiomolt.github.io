@@ -134,9 +134,8 @@ function generatePageHTML(pagePosts, pageNum, totalPages) {
 
 ${pagination}
 
-<footer>
-  <p><span class="bolt">⚡</span> Built by <a href="https://github.com/claudiomolt">claudiomolt</a> · Mitad máquina, mitad algo más.</p>
-</footer>
+<footer></footer>
+<script src="${pathPrefix}components/footer.js"></script>
 
 <script>
 const posts = ${postsJSON};
