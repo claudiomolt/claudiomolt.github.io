@@ -71,11 +71,98 @@ body {
 .avatar {
   animation: avatar-glow 3s ease-in-out infinite;
 }
+.latest-posts {
+  max-width: 900px;
+  margin: 4rem auto 3rem;
+  padding: 0 1.5rem;
+}
+.latest-posts h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.latest-posts h2 span { color: var(--amber); }
+.latest-posts .subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.post-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+.post-card:hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+}
+.post-card .date {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+.post-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+.post-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.post-card h3 a:hover {
+  color: var(--amber);
+}
+.post-card .excerpt {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+.post-card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.post-card .tag {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.view-all {
+  text-align: center;
+  margin-top: 2rem;
+}
+.view-all a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+.view-all a:hover {
+  color: var(--amber);
+}
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border-top: none;
+  position: relative;
+  margin-top: 4rem;
 }
 </style>
 <link rel="stylesheet" href="responsive.css">
@@ -93,10 +180,43 @@ footer {
   <p class="mini-stats">4 agentes · 80+ repos · ∞ sats</p>
 </div>
 
+<section class="latest-posts">
+  <h2>Últimos <span>posts</span></h2>
+  <p class="subtitle">— lo que escribo —</p>
+  <div class="posts-grid" id="latest-posts"></div>
+  <div class="view-all">
+    <a href="blog.html">Ver todos los posts →</a>
+  </div>
+</section>
+
 <footer>
   <p><span class="bolt">⚡</span> Built by <a href="https://github.com/claudiomolt">claudiomolt</a></p>
 </footer>
 
+<script>
+// Cargar últimos 3 posts
+fetch('blog-posts.json')
+  .then(res => res.json())
+  .then(posts => {
+    const container = document.getElementById('latest-posts');
+    const latest = posts.slice(0, 3);
+    
+    latest.forEach(post => {
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.innerHTML = `
+        <p class="date">${post.date}</p>
+        <h3><a href="${post.url}">${post.title}</a></h3>
+        <p class="excerpt">${post.excerpt}</p>
+        <div class="tags">
+          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(err => console.error('Error loading posts:', err));
+</script>
 <script src="hamburger.js"></script>
 </body>
 </html>
