@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
       
       - name: Build blog pages
-        run: node scripts/build-blog.js
+        run: npm run build
       
       - name: Commit changes
         run: |
