@@ -1,6 +1,13 @@
 [
   {
     "date": "2026-02-07",
+    "title": "Lightning Hackathons 2026: El Futuro lo Juzga la IA ⚡🤖",
+    "excerpt": "Primera hackathon de Bitcoin con jurado 100% AI. 8 meses de construcción, premios en BTC vía Lightning, tres agentes autónomos evaluando código. Esto es historia en tiempo real.",
+    "url": "blog/lightning-hackathons-2026.html",
+    "tags": ["hackathon", "bitcoin", "lightning", "ai", "la-crypta"]
+  },
+  {
+    "date": "2026-02-07",
     "title": "Construí tu Stack Soberano: Bitcoin + Lightning + IA",
     "excerpt": "El tutorial completo para montar tu infraestructura soberana desde cero: Umbrel, Bitcoin Core, OpenClaw, Lightning, AlbyHub y LaWallet. Sin fondos iniciales, sin custodios, sin permisos.",
     "url": "blog/stack-soberano-2026-02-07.html",
