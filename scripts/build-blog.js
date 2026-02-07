@@ -74,53 +74,7 @@ function generatePageHTML(pagePosts, pageNum, totalPages) {
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pathPrefix}styles.css">
-<style>
-.posts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  padding: 0 1.5rem;
-  width: 100%;
-}
-.pagination {
-  max-width: 900px;
-  margin: 2rem auto 3rem;
-  padding: 0 1.5rem;
-}
-.pagination-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-}
-.pagination-nav a {
-  color: var(--blue);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-.pagination-nav a:hover {
-  background: rgba(37, 99, 235, 0.15);
-}
-.page-indicator {
-  color: var(--muted);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9rem;
-}
-@media (max-width: 768px) {
-  .pagination-nav {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-}
-</style>
+<link rel="stylesheet" href="${pathPrefix}blog-list.css">
 <link rel="stylesheet" href="${pathPrefix}responsive.css">
 </head>
 <body>
