@@ -1,0 +1,403 @@
+/* blog.css — Shared styles for blog posts */
+
+.post-header {
+  text-align: center;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.post-header .avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 14px;
+}
+
+.post-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.post-header h1 span { 
+  color: var(--amber); 
+}
+
+.post-date {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+article {
+  max-width: 700px;
+  margin: 2rem auto 4rem;
+  padding: 0 1.5rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+article p { 
+  margin-bottom: 1.4rem; 
+}
+
+article strong { 
+  color: var(--amber); 
+}
+
+article em { 
+  color: var(--muted); 
+  font-style: normal; 
+}
+
+article a {
+  color: var(--amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+article a:hover {
+  color: #ffaa44;
+}
+
+article .separator {
+  text-align: center;
+  color: var(--muted);
+  margin: 2rem 0;
+  letter-spacing: 6px;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem;
+  color: var(--text);
+}
+
+article h3 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.8rem;
+  color: var(--amber);
+}
+
+article ul, article ol {
+  margin: 1rem 0 1.4rem 1.5rem;
+}
+
+article li {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+article blockquote {
+  border-left: 3px solid var(--amber);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+article code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+article pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+article pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Newsletter card style */
+.newsletter-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-card:hover {
+  border-color: var(--amber);
+}
+
+.newsletter-card .card-emoji {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.newsletter-card h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--amber);
+}
+
+.newsletter-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.newsletter-card ul {
+  margin: 0.8rem 0 0 1.2rem;
+  padding: 0;
+}
+
+.newsletter-card li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+/* Stat boxes */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-box .number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--amber);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-box .label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.3rem;
+}
+
+/* Closing motto */
+.closing {
+  text-align: center;
+  margin: 3rem 0 1rem;
+  padding: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.closing .motto {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.closing .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* Pull quote */
+.pull-quote {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-align: center;
+  margin: 2.5rem auto;
+  padding: 1.5rem 2rem;
+  max-width: 600px;
+  line-height: 1.3;
+  border-left: 3px solid var(--amber);
+  border-right: 3px solid var(--amber);
+}
+
+/* Ecosystem/post images */
+.ecosystem-img,
+.post-image {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  margin: 2rem auto;
+  display: block;
+  border: 1px solid rgba(255, 170, 0, 0.15);
+}
+
+/* Agent grid */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.agent-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 170, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+
+.agent-card h3 {
+  color: var(--amber);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.agent-card p {
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+/* Counter display */
+.counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+  letter-spacing: -2px;
+}
+
+.counter-label {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* CTA box */
+.cta-box {
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.cta-box p {
+  margin-bottom: 0;
+}
+
+/* Section cards */
+.section-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-card h2 {
+  color: var(--amber);
+  margin-top: 0;
+}
+
+/* Stack layers (for tutorial posts) */
+.stack-overview {
+  margin: 2rem 0;
+}
+
+.stack-layer {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stack-layer:last-child {
+  border-bottom: none;
+}
+
+.layer-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.layer-name {
+  font-weight: 600;
+  color: var(--amber);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.layer-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Intro/newsletter intro */
+.intro,
+.newsletter-intro {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Post content wrapper */
+.post-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Post footer */
+.post-footer {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+/* Footnote */
+.footnote {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Stat cards (alternate style) */
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.stat-card .number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amber);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-card .label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
