@@ -1,4 +1,5 @@
 // Navbar Component - Auto-inject and highlight active page
+// Accessibility-enhanced with ARIA labels and semantic HTML
 (function() {
   const navItems = [
     { href: 'index.html', label: 'Home' },
@@ -27,18 +28,22 @@
     const basePath = getBasePath();
     const currentPage = getCurrentPage();
     
+    // Create nav element with proper ARIA attributes
     const nav = document.createElement('nav');
+    nav.setAttribute('role', 'navigation');
+    nav.setAttribute('aria-label', 'Navegación principal');
     
     navItems.forEach(item => {
       const a = document.createElement('a');
       a.href = basePath + item.href;
       a.textContent = item.label;
       
-      // Mark active page
+      // Mark active page with aria-current
       if (currentPage === item.href || 
           (currentPage === '' && item.href === 'index.html') ||
           (item.href === 'index.html' && (currentPage === '/' || currentPage === ''))) {
         a.classList.add('active');
+        a.setAttribute('aria-current', 'page');
       }
       
       nav.appendChild(a);
