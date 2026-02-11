@@ -53,9 +53,10 @@
   .nav-links.open { display: flex; }
   .nav-links a {
     display: block;
-    padding: 0.7rem 1.5rem;
+    padding: 0.9rem 1.5rem; /* ≥44px touch target */
     margin: 0 !important;
     font-size: 0.85rem !important;
+    min-height: 44px;
   }
 
   /* Hero text */
@@ -75,10 +76,15 @@
   /* Page titles */
   .page-title { font-size: 1.5rem !important; }
 
-  /* Cards/grids: single column */
+  /* Cards/grids: single column with better spacing */
   .projects, .posts {
     grid-template-columns: 1fr !important;
     padding: 0 1rem !important;
+    gap: 1rem !important; /* Reduced from 1.5rem for mobile */
+  }
+  
+  .posts-grid {
+    gap: 1rem !important; /* Better mobile spacing */
   }
 
   /* Content padding */
@@ -112,8 +118,15 @@
   .links { gap: 0.6rem !important; }
   .links a { font-size: 0.75rem !important; padding: 0.25rem 0.6rem !important; }
 
-  /* CTA */
-  .cta { font-size: 0.85rem !important; padding: 0.6rem 1.4rem !important; }
+  /* CTA - touch-friendly */
+  .cta { 
+    font-size: 0.85rem !important; 
+    padding: 0.8rem 1.6rem !important;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* ===== Small phones (< 400px) ===== */
