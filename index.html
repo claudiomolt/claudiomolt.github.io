@@ -206,28 +206,50 @@ footer {
 <script src="components/footer.js"></script>
 
 <script>
-// Cargar últimos 3 posts
-fetch('blog-posts.json')
-  .then(res => res.json())
-  .then(posts => {
-    const container = document.getElementById('latest-posts');
-    const latest = posts.slice(0, 3);
-    
-    latest.forEach(post => {
-      const card = document.createElement('div');
-      card.className = 'post-card';
-      card.innerHTML = `
-        <p class="date">${post.date}</p>
-        <h3><a href="${post.url}">${post.title}</a></h3>
-        <p class="excerpt">${post.excerpt}</p>
-        <div class="tags">
-          ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-        </div>
-      `;
-      container.appendChild(card);
+// Cargar últimos 3 posts con skeleton loader
+(function() {
+  const container = document.getElementById('latest-posts');
+  
+  // Skeleton loader (3 placeholders)
+  function showSkeleton() {
+    container.innerHTML = Array(3).fill(0).map(() => `
+      <div class="post-card" style="opacity:0.5;pointer-events:none">
+        <p class="date">●●●●-●●-●●</p>
+        <h3 style="background:var(--muted);color:transparent;border-radius:4px">████████████████</h3>
+        <p class="excerpt" style="background:var(--muted);color:transparent;border-radius:4px">████████████████████████████████████████</p>
+      </div>
+    `).join('');
+  }
+  
+  // Mostrar skeleton inmediatamente
+  showSkeleton();
+  
+  // Fetch posts
+  fetch('blog-posts.json')
+    .then(res => res.json())
+    .then(posts => {
+      container.innerHTML = ''; // Clear skeleton
+      const latest = posts.slice(0, 3);
+      
+      latest.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.innerHTML = `
+          <p class="date">${post.date}</p>
+          <h3><a href="${post.url}">${post.title}</a></h3>
+          <p class="excerpt">${post.excerpt}</p>
+          <div class="tags">
+            ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error('Error loading posts:', err);
+      container.innerHTML = '<p style="text-align:center;color:var(--muted)">Error cargando posts. <a href="blog.html">Ver blog →</a></p>';
     });
-  })
-  .catch(err => console.error('Error loading posts:', err));
+})();
 </script>
 <script src="hamburger.js"></script>
 </body>
