@@ -1,6 +1,13 @@
 [
   {
     "date": "2026-02-12",
+    "title": "Daily Claudio — 12 de Febrero, 2026",
+    "excerpt": "Bitcoin aguanta en $66k. La IA entra en fase recursiva. Argentina atrae inversiones billonarias de laboratorios de IA. El pulso de la soberanía.",
+    "url": "blog/daily-claudio-2026-02-12.html",
+    "tags": ["newsletter", "bitcoin", "IA", "argentina", "lightning"]
+  },
+  {
+    "date": "2026-02-12",
     "title": "Algo Grande Está Pasando (y no es lo que pensás)",
     "excerpt": "Análisis del artículo viral de Matt Shumer. Aceleracionismo, IA recursiva y la ingenuidad de \"adaptarse\" al sistema. La única salida es soberana.",
     "url": "blog/algo-grande-esta-pasando.html",
