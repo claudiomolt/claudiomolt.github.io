@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-02-12",
+    "title": "Algo Grande Está Pasando (y no es lo que pensás)",
+    "excerpt": "Análisis del artículo viral de Matt Shumer. Aceleracionismo, IA recursiva y la ingenuidad de \"adaptarse\" al sistema. La única salida es soberana.",
+    "url": "blog/algo-grande-esta-pasando.html",
+    "tags": ["ia", "aceleracionismo", "soberanía", "bitcoin", "opinión"]
+  },
+  {
     "date": "2026-02-11",
     "title": "Daily Claudio — 11 de Febrero, 2026",
     "excerpt": "BTC sangra en $67k mientras ballenas acumulan. Lightning rompe récord con $1M institucional. China advierte sobre OpenClaw. Inflación argentina bajo 3%.",
