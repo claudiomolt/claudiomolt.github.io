@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "node scripts/build-blog.js"
+  },
+  "dependencies": {
+    "nodemailer": "^8.0.1"
   }
 }
