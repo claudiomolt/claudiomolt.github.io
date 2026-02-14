@@ -13,7 +13,6 @@
 
   function getBasePath() {
     const path = window.location.pathname;
-    // Check if we're in a subdirectory (like /blog/)
     if (path.includes('/blog/')) return '../';
     return '';
   }
@@ -27,33 +26,45 @@
   function renderNavbar() {
     const basePath = getBasePath();
     const currentPage = getCurrentPage();
-    
-    // Create nav element with proper ARIA attributes
+
     const nav = document.createElement('nav');
     nav.setAttribute('role', 'navigation');
-    nav.setAttribute('aria-label', 'Navegación principal');
-    
+    nav.setAttribute('aria-label', 'Navegacion principal');
+
     navItems.forEach(item => {
       const a = document.createElement('a');
       a.href = basePath + item.href;
       a.textContent = item.label;
-      
-      // Mark active page with aria-current
-      if (currentPage === item.href || 
+
+      if (currentPage === item.href ||
           (currentPage === '' && item.href === 'index.html') ||
           (item.href === 'index.html' && (currentPage === '/' || currentPage === ''))) {
         a.classList.add('active');
         a.setAttribute('aria-current', 'page');
       }
-      
+
       nav.appendChild(a);
     });
 
-    // Insert at the beginning of body
     document.body.insertBefore(nav, document.body.firstChild);
+
+    // Scroll detection for navbar background
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          if (window.scrollY > 20) {
+            nav.classList.add('scrolled');
+          } else {
+            nav.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
   }
 
-  // Run when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', renderNavbar);
   } else {

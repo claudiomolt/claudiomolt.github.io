@@ -1,4 +1,4 @@
-/* ===== RESPONSIVE - Mobile First Fixes ===== */
+/* ===== RESPONSIVE — Mobile First Fixes ===== */
 
 /* Hamburger button (hidden on desktop) */
 .hamburger {
@@ -11,11 +11,18 @@
 }
 .hamburger span {
   display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--amber);
+  width: 20px;
+  height: 1.5px;
+  background: var(--text-secondary);
   margin: 5px 0;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
+  border-radius: 1px;
+}
+.hamburger:hover span {
+  background: var(--amber);
+}
+.hamburger.active span {
+  background: var(--amber);
 }
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -28,13 +35,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.8rem 1rem !important;
+    padding: 0 1.2rem !important;
+    height: 56px !important;
   }
   .nav-brand {
     color: var(--amber);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', sans-serif;
   }
   .hamburger { display: block; }
   .nav-links {
@@ -43,48 +51,56 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(10,15,26,0.97);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(6, 11, 24, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--card-border, #1e2a42);
+    padding: 0.5rem 0 1rem;
+    border-bottom: 1px solid var(--card-border);
   }
   .nav-links.open { display: flex; }
   .nav-links a {
     display: block;
-    padding: 0.9rem 1.5rem; /* ≥44px touch target */
+    padding: 0.9rem 1.5rem;
     margin: 0 !important;
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
     min-height: 44px;
+    letter-spacing: 1.5px !important;
+  }
+  .nav-links a::after {
+    display: none;
   }
 
   /* Hero text */
+  .hero {
+    padding: 6rem 1.2rem 3rem !important;
+  }
   .hero-statement {
-    font-size: 2.2rem !important;
+    font-size: 2.5rem !important;
+    letter-spacing: -1px !important;
     word-break: break-word;
   }
-  .hero h1 { font-size: 1.8rem !important; }
-  .tagline { font-size: 0.95rem !important; }
+  .hero h1 { font-size: 1.3rem !important; }
+  .tagline { font-size: 0.9rem !important; }
 
   /* Avatar */
   .avatar {
-    width: 80px !important;
-    height: 80px !important;
+    width: 90px !important;
+    height: 90px !important;
   }
 
   /* Page titles */
   .page-title { font-size: 1.5rem !important; }
 
-  /* Cards/grids: single column with better spacing */
+  /* Cards/grids: single column */
   .projects, .posts {
     grid-template-columns: 1fr !important;
     padding: 0 1rem !important;
-    gap: 1rem !important; /* Reduced from 1.5rem for mobile */
+    gap: 1rem !important;
   }
-  
+
   .posts-grid {
-    gap: 1rem !important; /* Better mobile spacing */
+    gap: 1rem !important;
   }
 
   /* Content padding */
@@ -119,21 +135,26 @@
   .links a { font-size: 0.75rem !important; padding: 0.25rem 0.6rem !important; }
 
   /* CTA - touch-friendly */
-  .cta { 
-    font-size: 0.85rem !important; 
+  .cta {
+    font-size: 0.82rem !important;
     padding: 0.8rem 1.6rem !important;
     min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  }
+
+  /* Latest posts section */
+  .latest-posts {
+    padding: 0 1rem !important;
+  }
+  .latest-posts h2 {
+    font-size: 1.3rem !important;
   }
 }
 
 /* ===== Small phones (< 400px) ===== */
 @media (max-width: 400px) {
-  .hero-statement { font-size: 1.8rem !important; }
-  .hero h1 { font-size: 1.5rem !important; }
-  .avatar { width: 64px !important; height: 64px !important; }
+  .hero-statement { font-size: 2rem !important; }
+  .hero h1 { font-size: 1.2rem !important; }
+  .avatar { width: 72px !important; height: 72px !important; }
   .page-title { font-size: 1.3rem !important; padding-top: 4rem !important; }
   .card { padding: 1rem !important; }
   .card h2 { font-size: 1rem !important; }
@@ -141,4 +162,5 @@
   .phase-card h3 { font-size: 0.9rem !important; }
   .post-header h1 { font-size: 1.3rem !important; }
   article { font-size: 0.95rem !important; }
+  .post-card { padding: 1.3rem !important; }
 }
