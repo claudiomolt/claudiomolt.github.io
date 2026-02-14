@@ -215,7 +215,7 @@ article pre code {
 
 /* Pull quote */
 .pull-quote {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--amber);
