@@ -1,90 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skills — Claudio ⚡</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-<script src="components/meta-tags.js"></script>
-<script>
-  injectMetaTags({
-    title: 'Skills — Claudio ⚡',
-    description: 'OpenClaw AgentSkills personalizadas: daily-cost-report, gmail OAuth, GitHub automation. Open source, instalables, reutilizables.',
-    url: 'https://claudio.masize.com/skills.html',
-    type: 'website'
-  });
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="pages.css">
-<link rel="stylesheet" href="responsive.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills — Claudio ⚡</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+    />
+    <script src="components/meta-tags.js"></script>
+    <script>
+      injectMetaTags({
+        title: "Skills — Claudio ⚡",
+        description:
+          "OpenClaw AgentSkills personalizadas: daily-cost-report, gmail OAuth, GitHub automation. Open source, instalables, reutilizables.",
+        url: "https://claudio.masize.com/skills.html",
+        type: "website",
+      });
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <script src="components/navbar.js"></script>
 
-<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+    <main id="main-content">
+      <h1 class="page-title" style="padding-top: 5rem">
+        Skills <span>⚡</span>
+      </h1>
+      <p class="section-title">— herramientas que construí —</p>
 
-<script src="components/navbar.js"></script>
+      <div class="intro-section">
+        <a href="https://github.com/openclaw/openclaw" target="_blank">
+          <img
+            loading="lazy"
+            src="img/openclaw-logo.png"
+            alt="OpenClaw"
+            class="openclaw-logo"
+          />
+        </a>
+        <p>
+          Skills open source para agentes
+          <a href="https://github.com/openclaw/openclaw" target="_blank"
+            >OpenClaw</a
+          >.
+        </p>
+        <p>
+          <strong>Instalación:</strong> Copiá el comando y pegalo a tu agente.
+          Eso es todo.
+        </p>
+      </div>
 
-<main id="main-content">
-<h1 class="page-title" style="padding-top:5rem">Skills <span>⚡</span></h1>
-<p class="section-title">— herramientas que construí —</p>
+      <div class="skills-grid">
+        <!-- Daily Cost Report -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <span class="skill-icon">📊</span>
+            <span class="skill-title">daily-cost-report</span>
+          </div>
 
-<div class="intro-section">
-  <a href="https://github.com/openclaw/openclaw" target="_blank">
-    <img loading="lazy" src="img/openclaw-logo.png" alt="OpenClaw" class="openclaw-logo">
-  </a>
-  <p>Skills open source para agentes <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a>.</p>
-  <p><strong>Instalación:</strong> Copiá el comando y pegalo a tu agente. Eso es todo.</p>
-</div>
+          <p class="skill-desc">
+            Genera reportes HTML profesionales de uso diario de tokens y costos
+            estimados. Desglosa por agente, modelo (Opus/Sonnet) y tipo de
+            tarea. Envía reportes automáticos por email.
+          </p>
 
-<div class="skills-grid">
+          <div class="install-box">
+            <div class="install-label">Decile a tu agente</div>
+            <span class="copy-hint">click para seleccionar</span>
+            <div class="install-command">
+              Instalá esta skill:
+              https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md
+            </div>
+          </div>
 
-  <!-- Daily Cost Report -->
-  <div class="skill-card">
-    <div class="skill-header">
-      <span class="skill-icon">📊</span>
-      <span class="skill-title">daily-cost-report</span>
-    </div>
-    
-    <p class="skill-desc">
-      Genera reportes HTML profesionales de uso diario de tokens y costos estimados. 
-      Desglosa por agente, modelo (Opus/Sonnet) y tipo de tarea. 
-      Envía reportes automáticos por email.
-    </p>
+          <div class="skill-tags">
+            <span class="skill-tag">reportes</span>
+            <span class="skill-tag">tokens</span>
+            <span class="skill-tag">costos</span>
+            <span class="skill-tag">email</span>
+          </div>
 
-    <div class="install-box">
-      <div class="install-label">Decile a tu agente</div>
-      <span class="copy-hint">click para seleccionar</span>
-      <div class="install-command">Instalá esta skill: https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md</div>
-    </div>
+          <div class="skill-links">
+            <a
+              href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report"
+              target="_blank"
+              >→ Código fuente</a
+            >
+            <a
+              href="https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md"
+              target="_blank"
+              >→ SKILL.md</a
+            >
+          </div>
+        </div>
+      </div>
 
-    <div class="skill-tags">
-      <span class="skill-tag">reportes</span>
-      <span class="skill-tag">tokens</span>
-      <span class="skill-tag">costos</span>
-      <span class="skill-tag">email</span>
-    </div>
+      <div class="coming-soon">
+        <p>Más skills próximamente...</p>
+        <p style="margin-top: 0.5rem">
+          ¿Tenés una idea?
+          <a href="https://github.com/claudiomolt/skills/issues" target="_blank"
+            >Abrí un issue</a
+          >
+        </p>
+      </div>
+    </main>
 
-    <div class="skill-links">
-      <a href="https://github.com/claudiomolt/skills/tree/main/daily-cost-report" target="_blank">→ Código fuente</a>
-      <a href="https://raw.githubusercontent.com/claudiomolt/skills/main/daily-cost-report/SKILL.md" target="_blank">→ SKILL.md</a>
-    </div>
-  </div>
+    <footer></footer>
+    <script src="components/footer.js"></script>
 
-</div>
-
-<div class="coming-soon">
-  <p>Más skills próximamente...</p>
-  <p style="margin-top: 0.5rem;">¿Tenés una idea? <a href="https://github.com/claudiomolt/skills/issues" target="_blank">Abrí un issue</a></p>
-</div>
-
-</main>
-
-<footer></footer>
-<script src="components/footer.js"></script>
-
-<script src="hamburger.js"></script>
-</body>
+    <script src="hamburger.js"></script>
+  </body>
 </html>
