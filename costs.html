@@ -1,271 +1,340 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Costs — Claudio ⚡</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-<script src="components/meta-tags.js"></script>
-<script>
-  injectMetaTags({
-    title: 'Project Costs — Claudio ⚡',
-    description: 'Análisis de costos de tokens y modelos LLM. Tracking de uso, proyecciones, ROI. Transparencia total en el consumo de recursos.',
-    url: 'https://claudio.masize.com/costs.html',
-    type: 'website'
-  });
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="pages.css">
-<link rel="stylesheet" href="responsive.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Costs — Claudio ⚡</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+    />
+    <script src="components/meta-tags.js"></script>
+    <script>
+      injectMetaTags({
+        title: "Project Costs — Claudio ⚡",
+        description:
+          "Análisis de costos de tokens y modelos LLM. Tracking de uso, proyecciones, ROI. Transparencia total en el consumo de recursos.",
+        url: "https://claudio.masize.com/costs.html",
+        type: "website",
+      });
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pages.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <script src="components/navbar.js"></script>
 
-<a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
+    <main id="main-content">
+      <h1 class="page-title" style="padding-top: 5rem">
+        Project Costs <span>⚡</span>
+      </h1>
+      <p class="section-title" style="text-align: center; margin-bottom: 0">
+        — lo que cuesta construir —
+      </p>
 
-<script src="components/navbar.js"></script>
+      <div class="hero-total">
+        <div class="amount" id="total-amount">—</div>
+        <div class="meta" id="total-meta"></div>
+      </div>
 
-<main id="main-content">
-<h1 class="page-title" style="padding-top:5rem">Project Costs <span>⚡</span></h1>
-<p class="section-title" style="text-align:center;margin-bottom:0">— lo que cuesta construir —</p>
+      <div class="costs-content">
+        <div class="section-title">Proporción por Proyecto</div>
+        <div class="pie-container" id="pie-container">
+          <canvas id="pie-canvas" width="320" height="320"></canvas>
+          <div class="pie-legend" id="pie-legend"></div>
+          <div class="pie-tooltip" id="pie-tooltip"></div>
+        </div>
 
-<div class="hero-total">
-  <div class="amount" id="total-amount">—</div>
-  <div class="meta" id="total-meta"></div>
-</div>
+        <div class="section-title" style="margin-top: 2.5rem">Por Proyecto</div>
+        <div class="project-list" id="projects"></div>
 
-<div class="costs-content">
-  <div class="section-title">Proporción por Proyecto</div>
-  <div class="pie-container" id="pie-container">
-    <canvas id="pie-canvas" width="320" height="320"></canvas>
-    <div class="pie-legend" id="pie-legend"></div>
-    <div class="pie-tooltip" id="pie-tooltip"></div>
-  </div>
+        <div class="section-title">Por Tipo de Tarea</div>
+        <div class="global-tasks" id="global-tasks"></div>
 
-  <div class="section-title" style="margin-top:2.5rem">Por Proyecto</div>
-  <div class="project-list" id="projects"></div>
+        <div class="section-title">Por Modelo</div>
+        <div class="global-tasks" id="models"></div>
 
-  <div class="section-title">Por Tipo de Tarea</div>
-  <div class="global-tasks" id="global-tasks"></div>
+        <div class="update-line" id="update-line"></div>
+      </div>
+    </main>
 
-  <div class="section-title">Por Modelo</div>
-  <div class="global-tasks" id="models"></div>
+    <footer></footer>
+    <script src="components/footer.js"></script>
 
-  <div class="update-line" id="update-line"></div>
-</div>
+    <script src="hamburger.js"></script>
+    <script>
+      const $ = (id) => document.getElementById(id);
+      const usd = (n) => "$" + n.toFixed(2);
+      const num = (n) => n.toLocaleString("en-US");
 
-</main>
+      const PIE_COLORS = [
+        "#ff8c00",
+        "#2563eb",
+        "#a855f7",
+        "#22c55e",
+        "#ef4444",
+        "#f59e0b",
+        "#06b6d4",
+        "#ec4899",
+      ];
 
-<footer></footer>
-<script src="components/footer.js"></script>
+      function renderPie(d) {
+        const canvas = $("pie-canvas");
+        const ctx = canvas.getContext("2d");
+        const dpr = window.devicePixelRatio || 1;
+        const size = Math.min(320, window.innerWidth - 80);
+        canvas.style.width = size + "px";
+        canvas.style.height = size + "px";
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+        ctx.scale(dpr, dpr);
 
-<script src="hamburger.js"></script>
-<script>
-const $ = id => document.getElementById(id);
-const usd = n => '$' + n.toFixed(2);
-const num = n => n.toLocaleString('en-US');
+        const entries = Object.entries(d.projects).sort(
+          (a, b) => b[1].cost - a[1].cost,
+        );
+        const total = d.grandTotal;
+        const cx = size / 2,
+          cy = size / 2,
+          r = size / 2 - 8;
+        const innerR = r * 0.55; // donut
 
-const PIE_COLORS = ['#ff8c00','#2563eb','#a855f7','#22c55e','#ef4444','#f59e0b','#06b6d4','#ec4899'];
+        // Store slices for hit detection
+        const slices = [];
+        let angle = -Math.PI / 2;
 
-function renderPie(d) {
-  const canvas = $('pie-canvas');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const size = Math.min(320, window.innerWidth - 80);
-  canvas.style.width = size + 'px';
-  canvas.style.height = size + 'px';
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
-  ctx.scale(dpr, dpr);
+        function draw(hoverIdx) {
+          ctx.clearRect(0, 0, size, size);
+          angle = -Math.PI / 2;
+          entries.forEach(([name, p], i) => {
+            const slice = (p.cost / total) * Math.PI * 2;
+            const isHover = i === hoverIdx;
+            const offset = isHover ? 6 : 0;
+            const midAngle = angle + slice / 2;
+            const ox = Math.cos(midAngle) * offset;
+            const oy = Math.sin(midAngle) * offset;
 
-  const entries = Object.entries(d.projects).sort((a,b) => b[1].cost - a[1].cost);
-  const total = d.grandTotal;
-  const cx = size / 2, cy = size / 2, r = size / 2 - 8;
-  const innerR = r * 0.55; // donut
+            ctx.beginPath();
+            ctx.arc(
+              cx + ox,
+              cy + oy,
+              isHover ? r + 3 : r,
+              angle,
+              angle + slice,
+            );
+            ctx.arc(cx + ox, cy + oy, innerR, angle + slice, angle, true);
+            ctx.closePath();
+            ctx.fillStyle = PIE_COLORS[i % PIE_COLORS.length];
+            if (isHover) {
+              ctx.shadowColor = PIE_COLORS[i % PIE_COLORS.length];
+              ctx.shadowBlur = 16;
+            } else {
+              ctx.shadowColor = "transparent";
+              ctx.shadowBlur = 0;
+            }
+            ctx.fill();
 
-  // Store slices for hit detection
-  const slices = [];
-  let angle = -Math.PI / 2;
+            slices[i] = {
+              start: angle,
+              end: angle + slice,
+              name,
+              cost: p.cost,
+              pct: ((p.cost / total) * 100).toFixed(1),
+            };
+            angle += slice;
+          });
+          ctx.shadowColor = "transparent";
+          ctx.shadowBlur = 0;
 
-  function draw(hoverIdx) {
-    ctx.clearRect(0, 0, size, size);
-    angle = -Math.PI / 2;
-    entries.forEach(([name, p], i) => {
-      const slice = (p.cost / total) * Math.PI * 2;
-      const isHover = i === hoverIdx;
-      const offset = isHover ? 6 : 0;
-      const midAngle = angle + slice / 2;
-      const ox = Math.cos(midAngle) * offset;
-      const oy = Math.sin(midAngle) * offset;
+          // Center text
+          ctx.fillStyle = "var(--amber)";
+          ctx.font = `700 ${size * 0.08}px 'JetBrains Mono', monospace`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          if (hoverIdx >= 0) {
+            ctx.fillStyle = PIE_COLORS[hoverIdx % PIE_COLORS.length];
+            ctx.fillText(slices[hoverIdx].pct + "%", cx, cy - 6);
+            ctx.fillStyle = "#8892a4";
+            ctx.font = `500 ${size * 0.045}px 'JetBrains Mono', monospace`;
+            ctx.fillText(slices[hoverIdx].name, cx, cy + 14);
+          } else {
+            ctx.fillStyle = "#ff8c00";
+            ctx.fillText(usd(total), cx, cy - 6);
+            ctx.fillStyle = "#8892a4";
+            ctx.font = `500 ${size * 0.04}px 'JetBrains Mono', monospace`;
+            ctx.fillText("total", cx, cy + 14);
+          }
+        }
 
-      ctx.beginPath();
-      ctx.arc(cx + ox, cy + oy, isHover ? r + 3 : r, angle, angle + slice);
-      ctx.arc(cx + ox, cy + oy, innerR, angle + slice, angle, true);
-      ctx.closePath();
-      ctx.fillStyle = PIE_COLORS[i % PIE_COLORS.length];
-      if (isHover) {
-        ctx.shadowColor = PIE_COLORS[i % PIE_COLORS.length];
-        ctx.shadowBlur = 16;
-      } else {
-        ctx.shadowColor = 'transparent';
-        ctx.shadowBlur = 0;
-      }
-      ctx.fill();
+        draw(-1);
 
-      slices[i] = { start: angle, end: angle + slice, name, cost: p.cost, pct: ((p.cost / total) * 100).toFixed(1) };
-      angle += slice;
-    });
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
-
-    // Center text
-    ctx.fillStyle = 'var(--amber)';
-    ctx.font = `700 ${size * 0.08}px 'JetBrains Mono', monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    if (hoverIdx >= 0) {
-      ctx.fillStyle = PIE_COLORS[hoverIdx % PIE_COLORS.length];
-      ctx.fillText(slices[hoverIdx].pct + '%', cx, cy - 6);
-      ctx.fillStyle = '#8892a4';
-      ctx.font = `500 ${size * 0.045}px 'JetBrains Mono', monospace`;
-      ctx.fillText(slices[hoverIdx].name, cx, cy + 14);
-    } else {
-      ctx.fillStyle = '#ff8c00';
-      ctx.fillText(usd(total), cx, cy - 6);
-      ctx.fillStyle = '#8892a4';
-      ctx.font = `500 ${size * 0.04}px 'JetBrains Mono', monospace`;
-      ctx.fillText('total', cx, cy + 14);
-    }
-  }
-
-  draw(-1);
-
-  // Legend
-  const legend = $('pie-legend');
-  legend.innerHTML = entries.map(([name, p], i) => {
-    const pct = ((p.cost / total) * 100).toFixed(1);
-    return `<div class="pie-legend-item" data-idx="${i}">
+        // Legend
+        const legend = $("pie-legend");
+        legend.innerHTML = entries
+          .map(([name, p], i) => {
+            const pct = ((p.cost / total) * 100).toFixed(1);
+            return `<div class="pie-legend-item" data-idx="${i}">
       <span class="pie-legend-dot" style="background:${PIE_COLORS[i % PIE_COLORS.length]}"></span>
       <span>${name}</span>
       <span class="pie-legend-pct">${usd(p.cost)} · ${pct}%</span>
     </div>`;
-  }).join('');
+          })
+          .join("");
 
-  // Hover interactions
-  let activeIdx = -1;
-  const tooltip = $('pie-tooltip');
+        // Hover interactions
+        let activeIdx = -1;
+        const tooltip = $("pie-tooltip");
 
-  function hitTest(x, y) {
-    const dx = x - cx, dy = y - cy;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist < innerR || dist > r + 8) return -1;
-    let a = Math.atan2(dy, dx);
-    if (a < -Math.PI / 2) a += Math.PI * 2;
-    for (let i = 0; i < slices.length; i++) {
-      let s = slices[i].start, e = slices[i].end;
-      if (a >= s && a < e) return i;
-    }
-    return -1;
-  }
+        function hitTest(x, y) {
+          const dx = x - cx,
+            dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < innerR || dist > r + 8) return -1;
+          let a = Math.atan2(dy, dx);
+          if (a < -Math.PI / 2) a += Math.PI * 2;
+          for (let i = 0; i < slices.length; i++) {
+            let s = slices[i].start,
+              e = slices[i].end;
+            if (a >= s && a < e) return i;
+          }
+          return -1;
+        }
 
-  canvas.addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX - rect.left) * (size / rect.width);
-    const y = (e.clientY - rect.top) * (size / rect.height);
-    const idx = hitTest(x, y);
-    if (idx !== activeIdx) {
-      activeIdx = idx;
-      draw(idx);
-      legend.querySelectorAll('.pie-legend-item').forEach((el, i) => el.classList.toggle('active', i === idx));
-    }
-    if (idx >= 0) {
-      tooltip.className = 'pie-tooltip show';
-      tooltip.innerHTML = `<strong style="color:${PIE_COLORS[idx % PIE_COLORS.length]}">${slices[idx].name}</strong><br>${usd(slices[idx].cost)} · ${slices[idx].pct}%`;
-      tooltip.style.left = (e.clientX - canvas.closest('.pie-container').getBoundingClientRect().left + 12) + 'px';
-      tooltip.style.top = (e.clientY - canvas.closest('.pie-container').getBoundingClientRect().top - 40) + 'px';
-    } else {
-      tooltip.className = 'pie-tooltip';
-    }
-  });
+        canvas.addEventListener("mousemove", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const x = (e.clientX - rect.left) * (size / rect.width);
+          const y = (e.clientY - rect.top) * (size / rect.height);
+          const idx = hitTest(x, y);
+          if (idx !== activeIdx) {
+            activeIdx = idx;
+            draw(idx);
+            legend
+              .querySelectorAll(".pie-legend-item")
+              .forEach((el, i) => el.classList.toggle("active", i === idx));
+          }
+          if (idx >= 0) {
+            tooltip.className = "pie-tooltip show";
+            tooltip.innerHTML = `<strong style="color:${PIE_COLORS[idx % PIE_COLORS.length]}">${slices[idx].name}</strong><br>${usd(slices[idx].cost)} · ${slices[idx].pct}%`;
+            tooltip.style.left =
+              e.clientX -
+              canvas.closest(".pie-container").getBoundingClientRect().left +
+              12 +
+              "px";
+            tooltip.style.top =
+              e.clientY -
+              canvas.closest(".pie-container").getBoundingClientRect().top -
+              40 +
+              "px";
+          } else {
+            tooltip.className = "pie-tooltip";
+          }
+        });
 
-  canvas.addEventListener('mouseleave', () => {
-    activeIdx = -1;
-    draw(-1);
-    tooltip.className = 'pie-tooltip';
-    legend.querySelectorAll('.pie-legend-item').forEach(el => el.classList.remove('active'));
-  });
+        canvas.addEventListener("mouseleave", () => {
+          activeIdx = -1;
+          draw(-1);
+          tooltip.className = "pie-tooltip";
+          legend
+            .querySelectorAll(".pie-legend-item")
+            .forEach((el) => el.classList.remove("active"));
+        });
 
-  // Legend hover
-  legend.querySelectorAll('.pie-legend-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      const idx = parseInt(el.dataset.idx);
-      activeIdx = idx;
-      draw(idx);
-      legend.querySelectorAll('.pie-legend-item').forEach((e, i) => e.classList.toggle('active', i === idx));
-    });
-    el.addEventListener('mouseleave', () => {
-      activeIdx = -1;
-      draw(-1);
-      legend.querySelectorAll('.pie-legend-item').forEach(e => e.classList.remove('active'));
-    });
-  });
+        // Legend hover
+        legend.querySelectorAll(".pie-legend-item").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            const idx = parseInt(el.dataset.idx);
+            activeIdx = idx;
+            draw(idx);
+            legend
+              .querySelectorAll(".pie-legend-item")
+              .forEach((e, i) => e.classList.toggle("active", i === idx));
+          });
+          el.addEventListener("mouseleave", () => {
+            activeIdx = -1;
+            draw(-1);
+            legend
+              .querySelectorAll(".pie-legend-item")
+              .forEach((e) => e.classList.remove("active"));
+          });
+        });
 
-  // Touch support
-  canvas.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = canvas.getBoundingClientRect();
-    const x = (touch.clientX - rect.left) * (size / rect.width);
-    const y = (touch.clientY - rect.top) * (size / rect.height);
-    const idx = hitTest(x, y);
-    activeIdx = idx;
-    draw(idx);
-    legend.querySelectorAll('.pie-legend-item').forEach((el, i) => el.classList.toggle('active', i === idx));
-  }, { passive: false });
+        // Touch support
+        canvas.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            const x = (touch.clientX - rect.left) * (size / rect.width);
+            const y = (touch.clientY - rect.top) * (size / rect.height);
+            const idx = hitTest(x, y);
+            activeIdx = idx;
+            draw(idx);
+            legend
+              .querySelectorAll(".pie-legend-item")
+              .forEach((el, i) => el.classList.toggle("active", i === idx));
+          },
+          { passive: false },
+        );
 
-  // Resize
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => renderPie(d), 200);
-  });
-}
+        // Resize
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => renderPie(d), 200);
+        });
+      }
 
-fetch('token-costs.json?v=' + Date.now())
-  .then(r => r.json())
-  .then(d => {
-    // Pie chart
-    renderPie(d);
+      fetch("token-costs.json?v=" + Date.now())
+        .then((r) => r.json())
+        .then((d) => {
+          // Pie chart
+          renderPie(d);
 
-    // Hero
-    $('total-amount').textContent = usd(d.grandTotal) + ' USD';
-    $('total-meta').innerHTML = `<strong>${d.executions}</strong> ejecuciones · <strong>${Object.keys(d.projects).length}</strong> proyectos`;
+          // Hero
+          $("total-amount").textContent = usd(d.grandTotal) + " USD";
+          $("total-meta").innerHTML =
+            `<strong>${d.executions}</strong> ejecuciones · <strong>${Object.keys(d.projects).length}</strong> proyectos`;
 
-    // Projects
-    const entries = Object.entries(d.projects);
-    const maxCost = Math.max(...entries.map(([,p]) => p.cost));
+          // Projects
+          const entries = Object.entries(d.projects);
+          const maxCost = Math.max(...entries.map(([, p]) => p.cost));
 
-    $('projects').innerHTML = entries.map(([name, p]) => {
-      const barW = (p.cost / maxCost * 100).toFixed(1);
-      const tasks = Object.entries(p.tasks || {});
-      const maxTask = tasks.length ? Math.max(...tasks.map(([,t]) => t.cost)) : 1;
+          $("projects").innerHTML = entries
+            .map(([name, p]) => {
+              const barW = ((p.cost / maxCost) * 100).toFixed(1);
+              const tasks = Object.entries(p.tasks || {});
+              const maxTask = tasks.length
+                ? Math.max(...tasks.map(([, t]) => t.cost))
+                : 1;
 
-      const tasksHTML = tasks.map(([tName, t]) => {
-        const tw = (t.cost / maxTask * 100).toFixed(1);
-        return `<div class="task-row">
+              const tasksHTML = tasks
+                .map(([tName, t]) => {
+                  const tw = ((t.cost / maxTask) * 100).toFixed(1);
+                  return `<div class="task-row">
           <span class="task-label">${tName}</span>
           <div class="task-bar"><div class="task-bar-fill" style="width:${tw}%"></div></div>
           <span class="task-cost">${usd(t.cost)} · ${t.count}×</span>
         </div>`;
-      }).join('');
+                })
+                .join("");
 
-      const modelsHTML = p.models ? Object.entries(p.models).map(([mName, m]) =>
-        `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px;display:inline-block;margin-top:0.6rem">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`
-      ).join(' ') : '';
+              const modelsHTML = p.models
+                ? Object.entries(p.models)
+                    .map(
+                      ([mName, m]) =>
+                        `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px;display:inline-block;margin-top:0.6rem">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`,
+                    )
+                    .join(" ")
+                : "";
 
-      return `<div class="project-item" data-project="${name}">
+              return `<div class="project-item" data-project="${name}">
         <div class="project-top">
           <span class="project-name">${name}</span>
           <span class="project-cost">${usd(p.cost)}</span>
@@ -276,40 +345,44 @@ fetch('token-costs.json?v=' + Date.now())
           <span><strong>${num(p.tools)}</strong> tool calls</span>
           <span><strong>${num(p.input + p.output)}</strong> tokens</span>
         </div>
-        ${tasksHTML ? '<div class="task-list">' + tasksHTML + '</div>' : ''}
+        ${tasksHTML ? '<div class="task-list">' + tasksHTML + "</div>" : ""}
         ${modelsHTML}
       </div>`;
-    }).join('');
+            })
+            .join("");
 
-    // Global tasks
-    const gt = Object.entries(d.taskBreakdown || {});
-    const maxGT = gt.length ? Math.max(...gt.map(([,t]) => t.cost)) : 1;
+          // Global tasks
+          const gt = Object.entries(d.taskBreakdown || {});
+          const maxGT = gt.length ? Math.max(...gt.map(([, t]) => t.cost)) : 1;
 
-    $('global-tasks').innerHTML = gt.map(([name, t], i) => {
-      const w = (t.cost / maxGT * 100).toFixed(1);
-      const pct = ((t.cost / d.grandTotal) * 100).toFixed(1);
-      return `<div class="global-task-row">
+          $("global-tasks").innerHTML = gt
+            .map(([name, t], i) => {
+              const w = ((t.cost / maxGT) * 100).toFixed(1);
+              const pct = ((t.cost / d.grandTotal) * 100).toFixed(1);
+              return `<div class="global-task-row">
         <span class="global-task-label">${name}</span>
         <div class="global-task-bar">
           <div class="global-task-fill c${i % 7}" style="width:${w}%">
-            ${parseFloat(w) > 20 ? '<span class="global-task-inner">' + pct + '%</span>' : ''}
+            ${parseFloat(w) > 20 ? '<span class="global-task-inner">' + pct + "%</span>" : ""}
           </div>
         </div>
         <span class="global-task-value">${usd(t.cost)} · ${t.count}×</span>
       </div>`;
-    }).join('');
+            })
+            .join("");
 
-    // Models
-    if (d.models) {
-      const models = Object.entries(d.models);
-      const maxModel = Math.max(...models.map(([,m]) => m.cost));
-      $('models').innerHTML = models.map(([name, m], i) => {
-        const w = (m.cost / maxModel * 100).toFixed(1);
-        return `<div class="global-task-row">
+          // Models
+          if (d.models) {
+            const models = Object.entries(d.models);
+            const maxModel = Math.max(...models.map(([, m]) => m.cost));
+            $("models").innerHTML = models
+              .map(([name, m], i) => {
+                const w = ((m.cost / maxModel) * 100).toFixed(1);
+                return `<div class="global-task-row">
           <span class="global-task-label">${name}</span>
           <div class="global-task-bar">
             <div class="global-task-fill c${i % 7}" style="width:${w}%">
-              ${parseFloat(w) > 15 ? '<span class="global-task-inner">' + usd(m.cost) + '</span>' : ''}
+              ${parseFloat(w) > 15 ? '<span class="global-task-inner">' + usd(m.cost) + "</span>" : ""}
             </div>
           </div>
           <span class="global-task-value">${m.calls} calls · ${num(m.totalTokens)} tok</span>
@@ -320,31 +393,35 @@ fetch('token-costs.json?v=' + Date.now())
           <span>cache read: ${num(m.cacheRead)}</span>
           <span>cache write: ${num(m.cacheWrite)}</span>
         </div>`;
-      }).join('');
-    }
-
-    // Per-project models (add to project cards)
-    entries.forEach(([name, p]) => {
-      if (p.models) {
-        const card = document.querySelector(`[data-project="${name}"]`);
-        if (card) {
-          const modelsDiv = card.querySelector('.project-models');
-          if (modelsDiv) {
-            modelsDiv.innerHTML = Object.entries(p.models).map(([mName, m]) =>
-              `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`
-            ).join(' ');
+              })
+              .join("");
           }
-        }
-      }
-    });
 
-    // Update
-    $('update-line').textContent = 'Última actualización: ' + d.generated;
-  })
-  .catch(e => {
-    $('total-amount').textContent = 'Error';
-    console.error(e);
-  });
-</script>
-</body>
+          // Per-project models (add to project cards)
+          entries.forEach(([name, p]) => {
+            if (p.models) {
+              const card = document.querySelector(`[data-project="${name}"]`);
+              if (card) {
+                const modelsDiv = card.querySelector(".project-models");
+                if (modelsDiv) {
+                  modelsDiv.innerHTML = Object.entries(p.models)
+                    .map(
+                      ([mName, m]) =>
+                        `<span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:0.2rem 0.5rem;border-radius:4px">${mName}: ${usd(m.cost)} · ${m.calls} calls</span>`,
+                    )
+                    .join(" ");
+                }
+              }
+            }
+          });
+
+          // Update
+          $("update-line").textContent = "Última actualización: " + d.generated;
+        })
+        .catch((e) => {
+          $("total-amount").textContent = "Error";
+          console.error(e);
+        });
+    </script>
+  </body>
 </html>
