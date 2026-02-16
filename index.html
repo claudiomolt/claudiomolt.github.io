@@ -374,7 +374,9 @@
 
         showSkeleton();
 
-        fetch("blog-posts.json")
+        // Cache busting: agregar timestamp para forzar descarga más reciente
+        const timestamp = new Date().getTime();
+        fetch(`blog-posts.json?v=${timestamp}`)
           .then((res) => res.json())
           .then((posts) => {
             container.innerHTML = "";
