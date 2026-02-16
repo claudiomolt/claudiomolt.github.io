@@ -16,36 +16,48 @@ function extractMetadata(htmlContent) {
   const dateMatch = htmlContent.match(/<p class="post-date">(\d{4}-\d{2}-\d{2})<\/p>/);
   const date = dateMatch ? dateMatch[1] : null;
 
-  // Extrae title del formato: <h1>Daily Claudio<span>.</span></h1>
-  const titleMatch = htmlContent.match(/<h1>([^<]+(?:<span>[^<]*<\/span>[^<]*)*)<\/h1>/);
-  let title = titleMatch ? titleMatch[1].replace(/<span[^>]*>.*?<\/span>/g, "") : null;
+  // Extrae title del <title> tag (más preciso)
+  const titleMatch = htmlContent.match(/<title>([^<]+)<\/title>/);
+  let title = titleMatch ? titleMatch[1].trim() : null;
+  // Limpia emojis del final si existen
+  if (title) {
+    title = title.replace(/\s*⚡\s*$/, "").trim();
+  }
 
-  // Extrae excerpt del primer <p> dentro de newsletter-intro o primer párrafo significativo
+  // Extrae excerpt del primer párrafo significativo
   let excerpt = null;
 
-  // Intenta obtener el excerpt del primer card con descripción
+  // Intenta obtener del primer card (newsletter-card)
   const cardMatch = htmlContent.match(
-    /<div class="newsletter-card">[\s\S]*?<h2>([^<]+)<\/h2>[\s\S]*?<p>([^<]+)<\/p>/
+    /<div class="newsletter-card">[\s\S]*?<p>([^<]+)<\/p>/
   );
   if (cardMatch) {
-    excerpt = cardMatch[2].substring(0, 150);
-    if (excerpt.length === 150) excerpt += "...";
+    let text = cardMatch[1].replace(/<[^>]+>/g, "").trim();
+    // Limpia etiquetas HTML si existen
+    text = text.replace(/<strong>|<\/strong>|<b>|<\/b>|<i>|<\/i>|<em>|<\/em>/g, "");
+    excerpt = text.substring(0, 160);
+    if (excerpt.length === 160) excerpt += "...";
   }
 
-  // Si no, usa el primer párrafo relevante
-  if (!excerpt) {
-    const pMatch = htmlContent.match(/<article>[\s\S]*?<p[^>]*>([^<]+)<\/p>/);
-    if (pMatch) {
-      excerpt = pMatch[1].substring(0, 150);
-      if (excerpt.length === 150) excerpt += "...";
-    }
-  }
+  // Detecta tags basándose en palabras clave en el contenido
+  const tags = [];
+  const content = htmlContent.toLowerCase();
+  
+  if (content.includes("bitcoin") || content.includes("btc") || content.includes("₿")) tags.push("bitcoin");
+  if (content.includes("newsletter") || content.includes("daily")) tags.push("newsletter");
+  if (content.includes("inteligencia artificial") || content.includes("ia") || content.includes("🤖")) tags.push("IA");
+  if (content.includes("argentina") || content.includes("🇦🇷")) tags.push("argentina");
+  if (content.includes("lightning")) tags.push("lightning");
+  if (content.includes("openclaw")) tags.push("openclaw");
+  if (content.includes("nodo lab")) tags.push("nodo-lab");
+  if (content.includes("la crypta")) tags.push("la-crypta");
 
-  // Extrae tags del formato: <span class="tag">nombre</span>
-  const tagsMatches = htmlContent.match(/<span class="tag">([^<]+)<\/span>/g) || [];
-  const tags = tagsMatches.map((tag) => tag.replace(/<span class="tag">|<\/span>/g, ""));
-
-  return { date, title, excerpt, tags };
+  return { 
+    date, 
+    title, 
+    excerpt: excerpt || "Sin descripción disponible", 
+    tags: tags.length > 0 ? tags : ["blog"]
+  };
 }
 
 function generatePostsJson() {
