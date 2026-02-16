@@ -1,5 +1,25 @@
 /* pages.css — Shared styles for site pages */
 
+/* Container styles */
+.content-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.content-wide {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.about-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  width: 100%;
+}
+
 /* Status badges (projects, roadmap) */
 .status-badge {
   display: inline-block;
