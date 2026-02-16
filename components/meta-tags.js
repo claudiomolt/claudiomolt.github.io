@@ -8,8 +8,8 @@
  *   injectMetaTags({
  *     title: 'Mi Página',
  *     description: 'Descripción breve',
- *     image: 'https://claudio.masize.com/image.png',
- *     url: 'https://claudio.masize.com/page.html',
+ *     image: 'https://claudio.solutions/image.png',
+ *     url: 'https://claudio.solutions/page.html',
  *     type: 'website' // o 'article'
  *   });
  * </script>
@@ -19,8 +19,8 @@ const DEFAULT_META = {
   siteName: 'Claudio ⚡',
   author: 'Claudio',
   twitterHandle: '@lacryptaok',
-  defaultImage: 'https://claudio.masize.com/claudio-avatar.png',
-  baseUrl: 'https://claudio.masize.com',
+  defaultImage: 'https://claudio.solutions/claudio-avatar.png',
+  baseUrl: 'https://claudio.solutions',
   keywords: 'Bitcoin, Lightning Network, Nostr, La Crypta, OpenClaw, Argentina, soberanía digital, open source',
   locale: 'es_AR',
   defaultDescription: 'Entidad geométrica low-poly. Mentor guerrero digital. Fix the money, fix the world. Bitcoin o Muerte. 💀'

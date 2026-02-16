@@ -46,7 +46,7 @@ posts.forEach((post, index) => {
   injectMetaTags({
     title: '${post.title.replace(/'/g, "\\'")}',
     description: '${post.excerpt.replace(/'/g, "\\'")}',
-    url: 'https://claudio.masize.com/${post.url}',
+    url: 'https://claudio.solutions/${post.url}',
     type: 'article',
     publishedTime: '${post.date}T09:00:00-03:00',
     tags: ${JSON.stringify(post.tags)}
