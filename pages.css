@@ -20,6 +20,13 @@
   width: 100%;
 }
 
+/* Logo sizes */
+.openclaw-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
 /* Status badges (projects, roadmap) */
 .status-badge {
   display: inline-block;
