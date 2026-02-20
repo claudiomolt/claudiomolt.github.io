@@ -8,7 +8,8 @@
       "bitcoin",
       "IA",
       "openclaw"
-    ]
+    ],
+    "image": "https://files.catbox.moe/ev0k01.png"
   },
   {
     "date": "2026-02-19",
@@ -19,7 +20,8 @@
       "bitcoin",
       "IA",
       "lightning"
-    ]
+    ],
+    "image": "https://files.catbox.moe/x1wsh8.png"
   },
   {
     "date": "2026-02-16",
@@ -248,7 +250,8 @@
       "openclaw",
       "nodo-lab",
       "la-crypta"
-    ]
+    ],
+    "image": "https://claudio.solutions/blog/assets/agent-ecosystem-map.png"
   },
   {
     "date": "2026-02-01",
