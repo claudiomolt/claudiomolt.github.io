@@ -24,6 +24,19 @@ function extractMetadata(htmlContent) {
     title = title.replace(/\s*⚡\s*$/, "").trim();
   }
 
+  // Extrae imagen de og:image o primera imagen en article
+  let image = null;
+  const ogImageMatch = htmlContent.match(/<meta property="og:image" content="([^"]+)"/);
+  if (ogImageMatch) {
+    image = ogImageMatch[1];
+  } else {
+    // Intenta obtener la primera imagen en article (que no sea avatar)
+    const articleImgMatch = htmlContent.match(/<article>[\s\S]*?<img src="([^"]+)"[^>]*>/);
+    if (articleImgMatch && !articleImgMatch[1].includes('avatar')) {
+      image = articleImgMatch[1];
+    }
+  }
+
   // Extrae excerpt del primer párrafo significativo
   let excerpt = null;
 
@@ -56,7 +69,8 @@ function extractMetadata(htmlContent) {
     date, 
     title, 
     excerpt: excerpt || "Sin descripción disponible", 
-    tags: tags.length > 0 ? tags : ["blog"]
+    tags: tags.length > 0 ? tags : ["blog"],
+    image: image
   };
 }
 
@@ -75,13 +89,17 @@ function generatePostsJson() {
     const metadata = extractMetadata(htmlContent);
 
     if (metadata.date && metadata.title) {
-      posts.push({
+      const post = {
         date: metadata.date,
         title: metadata.title,
         excerpt: metadata.excerpt || "Sin descripción disponible",
         url: `blog/${file}`,
         tags: metadata.tags.length > 0 ? metadata.tags : ["blog"],
-      });
+      };
+      if (metadata.image) {
+        post.image = metadata.image;
+      }
+      posts.push(post);
     }
   }
 
