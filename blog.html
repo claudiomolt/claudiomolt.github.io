@@ -21,49 +21,93 @@
 
 <main class="posts" id="blog"></main>
 
-
-<div class="pagination">
-  <div class="pagination-nav">
-    
-    <span class="page-indicator">Página 1 de 4</span>
-    <a href="blog/page-2.html">Siguiente →</a>
-  </div>
+<div id="loading" style="text-align:center; padding:2rem; display:none;">
+  <span style="color:var(--muted);">Cargando más posts...</span>
 </div>
 
+<div id="end-message" style="text-align:center; padding:2rem; display:none;">
+  <span style="color:var(--muted);">— fin del archivo —</span>
+</div>
 
 <footer></footer>
 <script src="components/footer.js"></script>
 
 <script>
-const POSTS_PER_PAGE = 8;
-const currentPage = 1;
+const POSTS_PER_BATCH = 8;
+let allPosts = [];
+let currentIndex = 0;
+let isLoading = false;
 
+const blogContainer = document.getElementById("blog");
+const loadingEl = document.getElementById("loading");
+const endMessage = document.getElementById("end-message");
+
+function renderPosts(posts) {
+  posts.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+    card.innerHTML = `
+      <p class="mono" style="color:var(--muted);font-size:0.75rem;margin-bottom:0.4rem">${p.date}</p>
+      <h2><a href="${p.url}">${p.title}</a></h2>
+      <p class="desc">${p.excerpt || 'Sin descripción disponible'}</p>
+      <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+    `;
+    blogContainer.appendChild(card);
+    
+    // Trigger animation
+    requestAnimationFrame(() => {
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+    });
+  });
+}
+
+function loadMorePosts() {
+  if (isLoading || currentIndex >= allPosts.length) return;
+  
+  isLoading = true;
+  loadingEl.style.display = "block";
+  
+  setTimeout(() => {
+    const nextBatch = allPosts.slice(currentIndex, currentIndex + POSTS_PER_BATCH);
+    renderPosts(nextBatch);
+    currentIndex += POSTS_PER_BATCH;
+    
+    isLoading = false;
+    loadingEl.style.display = "none";
+    
+    if (currentIndex >= allPosts.length) {
+      endMessage.style.display = "block";
+    }
+  }, 300);
+}
+
+// Infinite scroll
+function handleScroll() {
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const docHeight = document.documentElement.scrollHeight;
+  
+  if (scrollTop + windowHeight >= docHeight - 500) {
+    loadMorePosts();
+  }
+}
+
+// Initialize
 fetch('blog-posts.json')
   .then(res => res.json())
-  .then(allPosts => {
-    const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
-    const posts = allPosts.slice(0, POSTS_PER_PAGE);
-    
-    const blogContainer = document.getElementById("blog");
-    posts.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <p class="mono" style="color:var(--muted);font-size:0.75rem;margin-bottom:0.4rem">${p.date}</p>
-        <h2><a href="${p.url}">${p.title}</a></h2>
-        <p class="desc">${p.excerpt || 'Sin descripción disponible'}</p>
-        <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
-      `;
-      blogContainer.appendChild(card);
-    });
-
-    // Update pagination
-    const pageIndicator = document.querySelector('.page-indicator');
-    if (pageIndicator) {
-      pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
-    }
+  .then(posts => {
+    allPosts = posts;
+    loadMorePosts();
+    window.addEventListener('scroll', handleScroll);
   })
-  .catch(err => console.error('Error loading posts:', err));
+  .catch(err => {
+    console.error('Error loading posts:', err);
+    blogContainer.innerHTML = '<p style="color:var(--muted);text-align:center;">Error cargando posts</p>';
+  });
 </script>
 <script src="hamburger.js"></script>
 </body>
