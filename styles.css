@@ -103,7 +103,16 @@ nav.scrolled {
   box-shadow: 0 1px 30px rgba(0, 0, 0, 0.3);
 }
 
-nav a {
+nav .nav-brand {
+  display: none;
+}
+
+nav .nav-links {
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-links a {
   color: var(--text-secondary);
   margin: 0 1.2rem;
   text-transform: uppercase;
@@ -114,7 +123,7 @@ nav a {
   transition: color var(--transition);
 }
 
-nav a::after {
+nav .nav-links a::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -125,19 +134,19 @@ nav a::after {
   transition: width var(--transition);
 }
 
-nav a:hover {
+nav .nav-links a:hover {
   color: var(--text);
 }
 
-nav a:hover::after {
+nav .nav-links a:hover::after {
   width: 100%;
 }
 
-nav a.active {
+nav .nav-links a.active {
   color: var(--amber);
 }
 
-nav a.active::after {
+nav .nav-links a.active::after {
   width: 100%;
   background: var(--amber);
 }

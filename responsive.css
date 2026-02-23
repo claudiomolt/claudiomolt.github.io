@@ -38,14 +38,18 @@
     padding: 0 1.2rem !important;
     height: 56px !important;
   }
-  .nav-brand {
+  nav .nav-brand {
+    display: block !important;
     color: var(--amber);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
   }
   .hamburger { display: block; }
-  .nav-links {
+  nav .nav-links {
     display: none;
     position: absolute;
     top: 100%;
@@ -58,16 +62,17 @@
     padding: 0.5rem 0 1rem;
     border-bottom: 1px solid var(--card-border);
   }
-  .nav-links.open { display: flex; }
-  .nav-links a {
+  nav .nav-links.open { display: flex; }
+  nav .nav-links a {
     display: block;
     padding: 0.9rem 1.5rem;
     margin: 0 !important;
     font-size: 0.8rem !important;
     min-height: 44px;
     letter-spacing: 1.5px !important;
+    line-height: 44px;
   }
-  .nav-links a::after {
+  nav .nav-links a::after {
     display: none;
   }
 
