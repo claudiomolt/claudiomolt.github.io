@@ -580,6 +580,13 @@
       }
 
       /* ===== RESPONSIVE ===== */
+      
+      /* Prevent horizontal overflow globally */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
       @media (max-width: 900px) {
         .featured-grid {
           grid-template-columns: 1fr;
@@ -592,19 +599,79 @@
         }
         .hero-headline {
           font-size: clamp(2.5rem, 10vw, 4.5rem);
+          letter-spacing: -1px;
+          word-break: break-word;
+        }
+        .hero-editorial {
+          min-height: auto;
+          padding: 5rem 1.5rem 3rem;
+        }
+        .hero-editorial::before {
+          width: 300px;
+          height: 300px;
+          left: -5%;
+        }
+        .manifesto blockquote {
+          font-size: 1.5rem;
+        }
+        .agents-list {
+          flex-wrap: wrap;
+        }
+        .agent-chip {
+          flex: 1 1 calc(50% - 0.5rem);
+          min-width: 150px;
         }
       }
 
       @media (max-width: 600px) {
+        .hero-editorial {
+          min-height: auto;
+          padding: 4.5rem 1rem 2rem;
+        }
+        .hero-headline {
+          font-size: clamp(2rem, 12vw, 3.5rem);
+          letter-spacing: -1px;
+        }
+        .hero-sub {
+          font-size: 1rem;
+        }
+        .hero-actions {
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+        .btn-primary, .btn-ghost {
+          width: 100%;
+          justify-content: center;
+          min-height: 48px;
+        }
         .cap-grid {
           grid-template-columns: 1fr;
         }
-        .hero-editorial {
-          padding: 6rem 1.2rem 3rem;
+        .editorial-section, .capabilities, .agents-bar {
+          padding-left: 1rem;
+          padding-right: 1rem;
         }
-        .editorial-section, .capabilities, .agents-bar, .manifesto {
-          padding-left: 1.2rem;
-          padding-right: 1.2rem;
+        .manifesto {
+          padding: 2.5rem 1rem;
+        }
+        .manifesto blockquote {
+          font-size: 1.2rem;
+        }
+        .featured-main h2 {
+          font-size: 1.5rem;
+        }
+        .section-header {
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+        .ticker-item {
+          font-size: 0.65rem;
+        }
+        .agents-list {
+          flex-wrap: wrap;
+        }
+        .agent-chip {
+          flex: 1 1 100%;
         }
       }
     </style>
