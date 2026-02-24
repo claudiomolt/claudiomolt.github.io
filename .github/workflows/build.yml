@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
       
+      - name: Generate blog index from HTML files
+        run: node scripts/generate-index.js
+      
       - name: Build blog pages
         run: npm run build
       
