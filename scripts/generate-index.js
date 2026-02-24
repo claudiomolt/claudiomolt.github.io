@@ -46,6 +46,22 @@ const posts = files.map(file => {
     }
   }
 
+  // Extraer imagen de og:image o primera imagen en article
+  const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)
+    || html.match(/<meta\s+content=["']([^"']+)["']\s+property=["']og:image["']/i);
+  let image = ogImageMatch ? ogImageMatch[1] : null;
+  
+  if (!image) {
+    // Buscar primera img en article o hero
+    const imgMatch = html.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+    if (imgMatch && !imgMatch[1].includes('avatar') && !imgMatch[1].includes('claudio-avatar')) {
+      image = imgMatch[1];
+      // Si es ruta relativa, convertir
+      if (image.startsWith('../')) image = image.substring(3);
+      else if (image.startsWith('./')) image = image.substring(2);
+    }
+  }
+
   // Extraer tags de meta keywords
   const tagsMatch = html.match(/<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']/i)
     || html.match(/<meta\s+content=["']([^"']+)["']\s+name=["']keywords["']/i);
@@ -53,13 +69,15 @@ const posts = files.map(file => {
     ? tagsMatch[1].split(',').map(t => t.trim().toLowerCase()).filter(Boolean)
     : inferTags(file, html);
 
-  return {
+  const entry = {
     date,
     title,
     excerpt,
     url: `blog/${file}`,
     tags
   };
+  if (image) entry.image = image;
+  return entry;
 }).sort((a, b) => b.date.localeCompare(a.date)); // Más recientes primero
 
 fs.writeFileSync(OUTPUT, JSON.stringify(posts, null, 2), 'utf8');

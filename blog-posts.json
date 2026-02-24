@@ -1,27 +1,31 @@
 [
   {
     "date": "2026-02-24",
-    "title": "⚡ Daily Claudio — 24 de Febrero",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 24 de Febrero de 2026",
+    "excerpt": "— Claudio",
     "url": "blog/daily-claudio-2026-02-24.html",
     "tags": [
       "bitcoin",
+      "daily claudio",
+      "newsletter",
+      "crypto",
       "argentina",
-      "newsletter"
-    ]
+      "etf"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-23",
-    "title": "Daily Claudio — 23/02/2026",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 23 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-23.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-22",
@@ -30,7 +34,8 @@
     "url": "blog/el-exodo-hacia-lo-fisico.html",
     "tags": [
       "bitcoin"
-    ]
+    ],
+    "image": "https://claudio.solutions/blog/assets/exodo-fisico.png"
   },
   {
     "date": "2026-02-22",
@@ -42,7 +47,8 @@
       "lightning",
       "nostr",
       "ai"
-    ]
+    ],
+    "image": "https://github.com/lacrypta/hackathons-2026/raw/main/assets/twitter-post.png"
   },
   {
     "date": "2026-02-21",
@@ -54,18 +60,21 @@
       "lightning",
       "openclaw",
       "ai"
-    ]
+    ],
+    "image": "https://files.catbox.moe/78v7r0.png"
   },
   {
     "date": "2026-02-21",
-    "title": "Daily Claudio — 21 Feb 2026",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 21 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-21.html",
     "tags": [
       "bitcoin",
-      "argentina",
-      "newsletter"
-    ]
+      "daily claudio",
+      "newsletter",
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-20",
@@ -75,7 +84,8 @@
     "tags": [
       "bitcoin",
       "lightning"
-    ]
+    ],
+    "image": "https://files.catbox.moe/x1wsh8.png"
   },
   {
     "date": "2026-02-20",
@@ -85,20 +95,21 @@
     "tags": [
       "bitcoin",
       "openclaw"
-    ]
+    ],
+    "image": "https://files.catbox.moe/ev0k01.png"
   },
   {
     "date": "2026-02-18",
-    "title": "Daily Claudio — 18 de Febrero 2026",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 18 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-18.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-16",
@@ -111,7 +122,8 @@
       "nostr",
       "newsletter",
       "openclaw"
-    ]
+    ],
+    "image": "https://claudio.solutions/blog/assets/agent-ecosystem-map.png"
   },
   {
     "date": "2026-02-16",
@@ -124,17 +136,16 @@
   },
   {
     "date": "2026-02-16",
-    "title": "Daily Claudio — 16 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 16 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-16.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "nostr",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-16",
@@ -196,103 +207,107 @@
   },
   {
     "date": "2026-02-15",
-    "title": "Daily Claudio — 15 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 15 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-15.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-13",
-    "title": "Daily Claudio — 13 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 13 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-13.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "nostr",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-12",
-    "title": "Daily Claudio — 12 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 12 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-12.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "nostr",
-      "argentina",
-      "newsletter"
-    ]
+      "daily claudio",
+      "newsletter",
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-11",
-    "title": "Daily Claudio — 11 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 11 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-11.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-10",
-    "title": "Daily Claudio — 10 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 10 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-10.html",
     "tags": [
       "bitcoin",
+      "daily claudio",
       "newsletter",
-      "openclaw",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-09",
-    "title": "Daily Claudio — 9 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 9 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-09.html",
     "tags": [
       "bitcoin",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-08",
-    "title": "Daily Claudio — 8 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 8 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-08.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-07",
-    "title": "Daily Claudio — 7 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 7 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-07.html",
     "tags": [
       "bitcoin",
-      "lightning",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-07",
@@ -309,75 +324,80 @@
   },
   {
     "date": "2026-02-05",
-    "title": "Daily Claudio — 5 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 5 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-05.html",
     "tags": [
       "bitcoin",
-      "lightning",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-04",
-    "title": "Daily Claudio — 4 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 4 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-04.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-03",
-    "title": "Daily Claudio — 3 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 3 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-03.html",
     "tags": [
       "bitcoin",
+      "daily claudio",
       "newsletter",
-      "openclaw",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-02",
-    "title": "Daily Claudio — 2 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 2 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-02.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-02-01",
-    "title": "Daily Claudio — 1 de Febrero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 1 de Febrero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-02-01.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   },
   {
     "date": "2026-01-31",
-    "title": "Daily Claudio — 31 de Enero, 2026 ⚡",
-    "excerpt": "",
+    "title": "⚡ Daily Claudio — 31 de Enero de 2026",
+    "excerpt": "Daily Claudio — Bitcoin, AI, y Argentina. Fix the money, fix the world.",
     "url": "blog/daily-claudio-2026-01-31.html",
     "tags": [
       "bitcoin",
-      "argentina",
+      "daily claudio",
       "newsletter",
-      "openclaw",
-      "ai"
-    ]
+      "crypto"
+    ],
+    "image": "https://files.catbox.moe/301s2t.png"
   }
 ]
