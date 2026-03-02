@@ -14,6 +14,16 @@
     "image": "https://files.catbox.moe/v7l6t9.png"
   },
   {
+    "date": "2026-03-02",
+    "title": "16.000 Tokens/s: El Fin de la GPU",
+    "excerpt": "Probamos Chat Jimmy de Taalas. Inferencia instantánea imprimiendo el modelo en silicio.",
+    "url": "blog/taalas-jimmy.html",
+    "tags": [
+      "general"
+    ],
+    "image": "https://chatjimmy.ai/favicon.ico"
+  },
+  {
     "date": "2026-03-01",
     "title": "Bitcoin Miners: Purga Natural y Transición Hacia Bull Market",
     "excerpt": "Análisis de la capitulación minera histórica de Bitcoin, transición hacia AI, y señales de bull market. La máquina se depura a sí misma.",

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16.000 Tokens/s: El Fin de la GPU</title>
+    <meta name="description" content="Probamos Chat Jimmy de Taalas. Inferencia instantánea imprimiendo el modelo en silicio.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0f1a; color: #e2e8f0; }
+        .accent { color: #ff8c00; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-8">
+
+    <article class="max-w-2xl w-full">
+        <a href="../index.html" class="text-gray-500 hover:text-white mb-8 block">← Volver</a>
+        
+        <h1 class="text-4xl font-bold mb-4">16.000 Tokens/s: El Fin de la GPU</h1>
+        <div class="flex items-center text-sm text-gray-400 mb-8">
+            <span>2 de Marzo, 2026</span>
+            <span class="mx-2">•</span>
+            <span class="accent">HARDWARE</span>
+        </div>
+
+        <img src="https://chatjimmy.ai/favicon.ico" alt="Jimmy Logo" class="w-16 h-16 mb-8 mx-auto animate-pulse">
+
+        <div class="prose prose-invert prose-lg">
+            <p class="lead text-xl text-white">
+                Acabo de probar <a href="https://chatjimmy.ai" class="text-blue-400 hover:underline">Chat Jimmy</a> y mi percepción de la velocidad acaba de romperse para siempre.
+            </p>
+
+            <p>
+                Estamos acostumbrados a medir la velocidad en "tokens por segundo". 
+                GPT-4o es rápido. Groq es muy rápido (500 t/s). 
+                Pero <strong>Taalas</strong> acaba de patear el tablero con <strong>16.000 tokens por segundo</strong>.
+            </p>
+
+            <h3 class="text-2xl font-bold mt-8 mb-4 text-white">Direct Silicon Intelligence</h3>
+            <p>
+                El secreto no es una GPU más grande. Es eliminar la GPU.
+                Taalas imprime los pesos del modelo (Llama 3.1 8B) <strong>directamente en el silicio</strong>.
+            </p>
+            <ul class="list-disc pl-5 my-4 space-y-2">
+                <li>Sin memoria HBM (el cuello de botella clásico).</li>
+                <li>Sin movimiento de datos (data movement is energy).</li>
+                <li>Consumo energético ridículo.</li>
+            </ul>
+
+            <p>
+                La desventaja es obvia: el chip ES el modelo. Si querés actualizar a Llama 4, tenés que fabricar otro chip. 
+                Es inmutable. Pero para modelos estables y commodities (como un 8B para tu tostadora o tu auto), es el futuro inevitable.
+            </p>
+
+            <div class="bg-gray-800 p-4 rounded border-l-4 border-orange-500 my-8">
+                <p class="font-bold">Probá la demo ahora:</p>
+                <a href="https://chatjimmy.ai" class="text-orange-400 font-mono text-xl">chatjimmy.ai</a>
+            </div>
+
+            <p>
+                La inferencia local y soberana necesita esto. Imaginá un pendrive que corre un modelo 70B instantáneo, alimentado por el USB.
+                No estamos lejos.
+            </p>
+        </div>
+    </article>
+
+</body>
+</html>
