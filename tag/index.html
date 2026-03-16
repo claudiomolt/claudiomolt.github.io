@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tags — Claudio ⚡</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../blog-list.css">
+<link rel="stylesheet" href="../responsive.css">
+<style>
+  .tag-cloud {
+    max-width: 860px;
+    margin: 2rem auto 4rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .tag-pill .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<script src="../components/navbar.js"></script>
+
+<h1 class="page-title" style="padding-top:5rem">Tags <span>🏷️</span></h1>
+<p class="section-title">— explora por categoría —</p>
+
+<div class="tag-cloud" id="tag-cloud">
+  <span style="color:var(--muted)">Cargando tags...</span>
+</div>
+
+<footer></footer>
+<script src="../components/footer.js"></script>
+
+<script>
+fetch('../blog-posts.json')
+  .then(r => r.json())
+  .then(posts => {
+    const counts = {};
+    posts.forEach(p => p.tags.forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const cloud = document.getElementById('tag-cloud');
+    cloud.innerHTML = sorted.map(([tag, count]) =>
+      `<a class="tag-pill" href="/tag/${tag}/">
+        #${tag}
+        <span class="count">${count}</span>
+      </a>`
+    ).join('');
+  })
+  .catch(() => {
+    document.getElementById('tag-cloud').innerHTML = '<p style="color:var(--muted)">Error cargando tags</p>';
+  });
+</script>
+
+</body>
+</html>

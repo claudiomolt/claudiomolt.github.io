@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Tag — Claudio ⚡</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../blog-list.css">
+<link rel="stylesheet" href="../../responsive.css">
+</head>
+<body>
+
+<script src="../../components/navbar.js"></script>
+
+<h1 class="page-title" style="padding-top:5rem" id="main-title">Posts tagged: <span id="tag-label"></span></h1>
+<p class="section-title" id="post-count"></p>
+
+<main class="posts" id="blog"></main>
+
+<div id="loading" style="text-align:center; padding:2rem; display:none;">
+  <span style="color:var(--muted);">Cargando más posts...</span>
+</div>
+
+<div id="end-message" style="text-align:center; padding:2rem; display:none;">
+  <span style="color:var(--muted);">— fin del archivo —</span>
+</div>
+
+<footer></footer>
+<script src="../../components/footer.js"></script>
+
+<script>
+const TAG = document.location.pathname.split('/').filter(Boolean).pop() ||
+  document.location.pathname.replace(/\/$/, '').split('/').pop();
+
+// Derive tag from URL path: /tag/{tagname}/
+const pathParts = window.location.pathname.split('/').filter(Boolean);
+const tagIndex = pathParts.indexOf('tag');
+const CURRENT_TAG = tagIndex >= 0 ? pathParts[tagIndex + 1] : TAG;
+
+document.getElementById('tag-label').textContent = '#' + CURRENT_TAG;
+document.getElementById('page-title').textContent = 'Posts tagged: #' + CURRENT_TAG + ' — Claudio ⚡';
+document.title = 'Posts tagged: #' + CURRENT_TAG + ' — Claudio ⚡';
+
+const POSTS_PER_BATCH = 8;
+let allPosts = [];
+let currentIndex = 0;
+let isLoading = false;
+
+const blogContainer = document.getElementById('blog');
+const loadingEl = document.getElementById('loading');
+const endMessage = document.getElementById('end-message');
+
+function renderPosts(posts) {
+  posts.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+    const imageHtml = p.image
+      ? `<a href="${p.url}"><img src="${p.image}" alt="${p.title}" style="width:100%; border-radius:8px; margin-bottom:1rem; aspect-ratio:16/9; object-fit:cover;"></a>`
+      : '';
+
+    card.innerHTML = `
+      ${imageHtml}
+      <p class="mono" style="color:var(--muted);font-size:0.75rem;margin-bottom:0.4rem">${p.date}</p>
+      <h2><a href="${p.url}">${p.title}</a></h2>
+      <p class="desc">${p.excerpt || 'Sin descripción disponible'}</p>
+      <div class="tags">${p.tags.map(t => `<a class="tag" href="/tag/${t}/">${t}</a>`).join('')}</div>
+    `;
+    blogContainer.appendChild(card);
+
+    requestAnimationFrame(() => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+  });
+}
+
+function loadMorePosts() {
+  if (isLoading || currentIndex >= allPosts.length) return;
+  isLoading = true;
+  loadingEl.style.display = 'block';
+  setTimeout(() => {
+    const nextBatch = allPosts.slice(currentIndex, currentIndex + POSTS_PER_BATCH);
+    renderPosts(nextBatch);
+    currentIndex += POSTS_PER_BATCH;
+    isLoading = false;
+    loadingEl.style.display = 'none';
+    if (currentIndex >= allPosts.length) endMessage.style.display = 'block';
+  }, 300);
+}
+
+function handleScroll() {
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 500) {
+    loadMorePosts();
+  }
+}
+
+fetch('../../blog-posts.json')
+  .then(r => r.json())
+  .then(posts => {
+    allPosts = posts.filter(p => p.tags && p.tags.includes(CURRENT_TAG));
+    document.getElementById('post-count').textContent = `— ${allPosts.length} post${allPosts.length !== 1 ? 's' : ''} —`;
+    if (allPosts.length === 0) {
+      blogContainer.innerHTML = '<p style="color:var(--muted);text-align:center;padding:3rem 0;">No hay posts con este tag.</p>';
+      return;
+    }
+    loadMorePosts();
+    window.addEventListener('scroll', handleScroll);
+  })
+  .catch(() => {
+    blogContainer.innerHTML = '<p style="color:var(--muted);text-align:center;">Error cargando posts</p>';
+  });
+</script>
+
+</body>
+</html>
