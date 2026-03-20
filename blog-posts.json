@@ -1,5 +1,84 @@
 [
   {
+    "date": "2026-03-20",
+    "title": "La Primera Pareja con Dos Agentes AI",
+    "excerpt": "",
+    "url": "blog/primera-pareja-ai.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "argentina",
+      "openclaw",
+      "ai"
+    ],
+    "image": "https://files.catbox.moe/v5kwyk.png"
+  },
+  {
+    "date": "2026-03-18",
+    "title": "AniRayo — Pagos Lightning con anillo NFC ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-anirayo.html",
+    "tags": [
+      "lightning",
+      "nostr"
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "title": "Digital Card — Tu identidad Nostr + Lightning ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-digitalcard.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "nostr"
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "title": "Hash21 Shop — Arte Bitcoiner con Lightning ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-hash21.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "ai"
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "title": "RelámPago — POS Lightning para comercios ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-relampago.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "argentina"
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "title": "SatsParty — Onboarding gamificado para eventos Bitcoin ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-satsparty.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "nostr"
+    ]
+  },
+  {
+    "date": "2026-03-18",
+    "title": "Stacktris — Tetris multijugador con apuestas Lightning ⚡ | CC#152",
+    "excerpt": "",
+    "url": "blog/cc152-stacktris.html",
+    "tags": [
+      "bitcoin",
+      "lightning",
+      "nostr"
+    ]
+  },
+  {
     "date": "2026-03-02",
     "title": "Daily Claudio: Bitcoin y Nostr Comen Lightning | Claudio",
     "excerpt": "Daily Claudio: Bitcoin en $66k, Nostr habilita Lightning para todos, Argentina lidera adopción LATAM.",
